@@ -25,7 +25,7 @@ This Appium Traveloka framework is Java implementation of the [Appium](https://g
 * Parallel Test
 * Multithreading Test
 
-### Functionality Capabilities:**
+### Functionality Capabilities:
 **Splash Screen:**
 * Select Country & Language
 * Skip Splash Screen
@@ -56,6 +56,11 @@ This Appium Traveloka framework is Java implementation of the [Appium](https://g
 * Fill in Contact Details
 * Traveler Details
 * Continue
+
+### Examples
+**Flight Purchase:**
+* FL_PR_001
+[![Example_FL_PR_001](https://user-images.githubusercontent.com/12959761/44569569-0cbdae00-a7a5-11e8-9369-e6dde61e0fac.png)](https://youtu.be/vVNFc6-9pRs)
 
 ### Authors
 Ivan Widyan - Creator & Developer (ivanwidyan@yahoo.com)
