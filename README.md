@@ -6,6 +6,7 @@ Appium Testing Framework for Traveloka Android App
 This Appium Traveloka framework is Java implementation of the [Appium](https://github.com/appium/appium) framework for [Selenium](https://github.com/SeleniumHQ/selenium) software-testing framework and [TestNG](https://github.com/cbeust/testng) testing framework to create easy automate testing for Traveloka Android Application which written in Java & XML.
 
 ### Development Technology
+Included in `pom.xml` for maven dependency
 * [Selenium](https://github.com/SeleniumHQ/selenium)
 * [Appium](https://github.com/appium/appium)
 * [TestNG](https://github.com/cbeust/testng)
