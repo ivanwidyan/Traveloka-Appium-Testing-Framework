@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Failed suite [Purchase]" guice-stage="DEVELOPMENT">
+  <test thread-count="5" name="002 Print List of Flights from Surabaya to Bali(failed)">
+    <classes>
+      <class name="com.testing.traveloka.SplashScreen">
+        <methods>
+          <include name="AfterTest"/>
+          <include name="SkipSplashScreen"/>
+          <include name="AfterSuite"/>
+          <include name="ChooseCountryLanguage" invocation-numbers="0"/>
+          <include name="SetUp"/>
+        </methods>
+      </class> <!-- com.testing.traveloka.SplashScreen -->
+      <class name="com.testing.traveloka.Home">
+        <methods>
+          <include name="ClickFlight"/>
+        </methods>
+      </class> <!-- com.testing.traveloka.Home -->
+      <class name="com.testing.traveloka.flights.SearchFlights">
+        <methods>
+          <include name="SetDestination" invocation-numbers="0">
+            <parameter name="input" value="Bali"/>
+          </include> <!-- SetDestination -->
+          <include name="SearchFlights"/>
+          <include name="SetOrigin" invocation-numbers="0">
+            <parameter name="input" value="Surabaya"/>
+          </include> <!-- SetOrigin -->
+        </methods>
+      </class> <!-- com.testing.traveloka.flights.SearchFlights -->
+    </classes>
+  </test> <!-- 002 Print List of flights from Surabaya to Bali(failed) -->
+</suite> <!-- Failed suite [Purchase] -->

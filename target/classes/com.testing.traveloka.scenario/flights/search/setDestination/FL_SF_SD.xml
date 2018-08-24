@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="FL_SF_SD Search Flight and Set Destination">
+    <test name="FL_SF_SD_001 Search Flight and Set Destination to a City">
+        <classes>
+            <class name="com.testing.traveloka.SplashScreen" />
+            <class name="com.testing.traveloka.Home">
+                <methods>
+                    <include name="ClickFlights"/>
+                </methods>
+            </class>
+            <class name="com.testing.traveloka.flights.SearchFlights">
+                <methods>
+                    <include name="SearchFlightsTooltip"/>
+                    <include name = "SetDestination" >
+                        <parameter name = "input" value="Jakarta"/>
+                    </include>
+                </methods>
+            </class>
+        </classes>
+    </test>
+    <test name="FL_SF_SD_002 Search Flight and Set Destination to a Country">
+        <classes>
+            <class name="com.testing.traveloka.SplashScreen" />
+            <class name="com.testing.traveloka.Home">
+                <methods>
+                    <include name="ClickFlights"/>
+                </methods>
+            </class>
+            <class name="com.testing.traveloka.flights.SearchFlights">
+                <methods>
+                    <include name="SearchFlightsTooltip"/>
+                    <include name = "SetDestination" >
+                        <parameter name = "input" value="Indonesia"/>
+                    </include>
+                </methods>
+            </class>
+        </classes>
+    </test>
+    <test name="FL_SF_SD_003 Search Flight and Set Destination to an Airport">
+        <classes>
+            <class name="com.testing.traveloka.SplashScreen" />
+            <class name="com.testing.traveloka.Home">
+                <methods>
+                    <include name="ClickFlights"/>
+                </methods>
+            </class>
+            <class name="com.testing.traveloka.flights.SearchFlights">
+                <methods>
+                    <include name="SearchFlightsTooltip"/>
+                    <include name = "SetDestination" >
+                        <parameter name = "input" value="HLP"/>
+                    </include>
+                </methods>
+            </class>
+        </classes>
+    </test>
+    <test name="FL_SF_SD_004 Search Flight and Set Destination to an invalid input">
+        <classes>
+            <class name="com.testing.traveloka.SplashScreen" />
+            <class name="com.testing.traveloka.Home">
+                <methods>
+                    <include name="ClickFlights"/>
+                </methods>
+            </class>
+            <class name="com.testing.traveloka.flights.SearchFlights">
+                <methods>
+                    <include name="SearchFlightsTooltip"/>
+                    <include name = "SetDestination" >
+                        <parameter name = "input" value="test123"/>
+                    </include>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>

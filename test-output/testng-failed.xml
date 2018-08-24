@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Failed suite [Flight Purchase]" guice-stage="DEVELOPMENT">
+  <test thread-count="5" name="002 Business Flight Purchase -&gt; From Surabaya to Bali -&gt; set date 25     -&gt; Search -&gt; Short by Lowest Price -&gt; Print Result -&gt; Select First Flight     -&gt; Skip Booking Summary -&gt; Fill in Contact and Travel Details -&gt; Continue(failed)">
+    <classes>
+      <class name="Book">
+        <methods>
+          <include name="Continue"/>
+          <include name="FillInContactDetails" invocation-numbers="0"/>
+          <include name="TravelDetails">
+            <parameter name="traveler" value="Adult 1"/>
+          </include> <!-- TravelDetails -->
+        </methods>
+      </class> <!-- Book -->
+    </classes>
+  </test> <!-- 002 Business Flight Purchase -> From Surabaya to Bali -> set date 25     -> Search -> Short by Lowest Price -> Print Result -> Select First Flight     -> Skip Booking Summary -> Fill in Contact and Travel Details -> Continue(failed) -->
+</suite> <!-- Failed suite [Flight Purchase] -->

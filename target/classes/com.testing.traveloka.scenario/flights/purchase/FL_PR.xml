@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Flight Purchase Test" >
+    <test name="FL_PR_001 Purchase Economy Flight From HLP (Jakarta) to Yogyakarta (Swap)
+                AND search and Sort By Earliest Departure, pick first row, then skip Booking Summary
+                AND Fill in Contact Details and TravelerDetails, then continue">
+
+        <classes>
+            <class name="com.testing.traveloka.SplashScreen" />
+            <class name="com.testing.traveloka.Home">
+                <methods>
+                    <include name="ClickFlights"/>
+                </methods>
+            </class>
+            <class name="com.testing.traveloka.flights.SearchFlights">
+                <methods>
+                    <include name="SearchFlightsTooltip"/>
+                    <include name = "SetOrigin" >
+                        <parameter name = "input" value="HLP"/>
+                    </include>
+                    <include name = "SetDestination" >
+                        <parameter name = "input" value="Yogyakarta"/>
+                    </include>
+                    <include name="SwapOriginAndDestination"/>
+                    <include name="SearchFlights"/>
+                </methods>
+            </class>
+            <class name="com.testing.traveloka.flights.SelectFlight" >
+                <methods>
+                    <include name = "SortBy" >
+                        <parameter name = "input" value="Earliest departure"/>
+                    </include>
+                    <include name="PrintFlight"/>
+                    <include name="SelectFlight"/>
+                </methods>
+            </class>
+            <class name="com.testing.traveloka.flights.BookingSummary" />
+            <class name="com.testing.traveloka.flights.fillindetails.Book" >
+                <methods>
+                    <include name = "FillInContactDetails" />
+                    <include name = "TravelerDetails" >
+                        <parameter name = "traveler" value="Adult 1"/>
+                    </include>
+                    <include name="Continue"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+    <test name="FL_PR_002 Purchase Business Flight From Surabaya to Bali, set Departure Date 28
+                AND search and pick first row, then skip Booking Summary
+                AND Fill in Contact Details and TravelerDetails, then continue">
+
+        <classes>
+            <class name="com.testing.traveloka.SplashScreen" />
+            <class name="com.testing.traveloka.Home">
+                <methods>
+                    <include name="ClickFlights"/>
+                </methods>
+            </class>
+            <class name="com.testing.traveloka.flights.SearchFlights">
+                <methods>
+                    <include name="SearchFlightsTooltip"/>
+                    <include name = "SetOrigin" >
+                        <parameter name = "input" value="Surabaya"/>
+                    </include>
+                    <include name = "SetDestination" >
+                        <parameter name = "input" value="Bali"/>
+                    </include>
+                    <include name = "SetDepartureDate" >
+                        <parameter name = "date" value="28"/>
+                    </include>
+                    <include name = "SetSeatClass" >
+                        <parameter name = "input" value="Business"/>
+                    </include>
+                    <include name="SearchFlights"/>
+                </methods>
+            </class>
+            <class name="com.testing.traveloka.flights.SelectFlight" >
+                <methods>
+                    <include name="PrintFlight"/>
+                    <include name="SelectFlight"/>
+                </methods>
+            </class>
+            <class name="com.testing.traveloka.flights.BookingSummary" />
+            <class name="com.testing.traveloka.flights.fillindetails.Book" >
+                <methods>
+                    <include name = "FillInContactDetails" />
+                    <include name = "TravelerDetails" >
+                        <parameter name = "traveler" value="Adult 1"/>
+                    </include>
+                    <include name="Continue"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>
