@@ -33,6 +33,13 @@ Included in `pom.xml` for maven dependency
 
 **Home:**
 * Navigate to Flights
+* Navigate to Log In or Register
+
+**Member:**
+* Click Log In and Register
+
+**Login:**
+* Log In with Email, Facebook, or Google
 
 **Search Flights:**
 * Set Origin
