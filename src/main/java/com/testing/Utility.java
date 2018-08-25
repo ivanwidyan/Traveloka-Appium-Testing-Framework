@@ -20,6 +20,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 public class Utility {
     private final static String NO_SENDKEYS = null;
@@ -217,6 +218,12 @@ public class Utility {
         WebElement webElement;
         WebDriverWait wait = new WebDriverWait(driver, timeout);
 
+        // TODO: Report bug to appium
+        /* This code is not working when using CLI setup appium server
+        driver.manage().timeouts().pageLoadTimeout(timeout, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(timeout, TimeUnit.SECONDS);
+        */
+
         if (type.equals(ConfigConstants.ELEMENT_TYPE_TEXT_TEXT_VIEW)) {
             String xpath = "//android.widget.TextView[@text='" + input + "']";
             wait.until(ExpectedConditions.elementToBeClickable(By.xpath(xpath)));
@@ -324,6 +331,13 @@ public class Utility {
         return webElement;
     }
 
+    /**
+     * Swipe screen vertically by anchor start point, end point, and anchor
+     * @param driver
+     * @param startPoint in y coordinates
+     * @param endPoint in y coordinates
+     * @param anchor in x coordinates
+     */
     public static void SwipeVerticalByCoordinate (AppiumDriver driver, int startPoint, int endPoint, int anchor) {
         TouchAction touchAction = new TouchAction(driver);
         touchAction.press(PointOption.point(anchor, startPoint))
@@ -332,6 +346,13 @@ public class Utility {
                 .release().perform();
     }
 
+    /**
+     * Swipe screen horizontally by anchor start point, end point, and anchor
+     * @param driver
+     * @param startPoint in x coordinates
+     * @param endPoint in y coordinates
+     * @param anchor in y coordinates
+     */
     public static void SwipeHorizontalByCoordinate (AppiumDriver driver, int startPoint, int endPoint, int anchor) {
         TouchAction touchAction = new TouchAction(driver);
         touchAction.press(PointOption.point(startPoint, anchor))
@@ -340,6 +361,14 @@ public class Utility {
                 .release().perform();
     }
 
+    /**
+     * Swipe screen horizontally by x and y start point to x and y end point.
+     * @param driver
+     * @param startX
+     * @param startY
+     * @param endX
+     * @param endY
+     */
     public static void SwipeByCoordinate (AppiumDriver driver, int startX, int startY, int endX, int endY) {
         TouchAction touchAction = new TouchAction(driver);
         touchAction.press(PointOption.point(startX, startY))

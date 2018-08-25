@@ -1,6 +1,10 @@
 package com.testing.traveloka.constants;
 
 public class ElementConstants {
+    // Testing Account
+    public final static String TEST_EMAIL = "travelokaappiumtest@gmail.com";
+    public final static String TEST_PASSWORD = "travelokaappiumtest123";
+
     // General Text
     public final static String TEXT_CONTINUE = "Continue";
     public final static String TEXT_SKIP = "Skip";
@@ -14,12 +18,10 @@ public class ElementConstants {
     public final static String TEXT_INDONESIA_INDONESIA = "Indonesia (Indonesia)";
     public final static String TEXT_INDONESIA_ENGLISH = "Indonesia (English)";
 
-    // member Elements
-    public final static String ID_LOGIN_BUTTON = "com.traveloka.android:id/login_button";
-    public final static String ID_REGISTER_BUTTON = "com.traveloka.android:id/register_button";
+    // Member Text
 
     // Home Text
-    public final static String TEXT_FLIGHTS = "flights";
+    public final static String TEXT_FLIGHTS = "Flights";
 
     // SearchFlight Text
     public final static String TEXT_ORIGIN = "Origin";
@@ -53,6 +55,19 @@ public class ElementConstants {
     public final static String TEXT_TITLE_MR = "Mr.";
     public final static String TEXT_TITLE_MRS = "Mrs.";
     public final static String TEXT_TITLE_MS = "Ms.";
+
+    // Home ID
+    public final static String ID_TEXT_VIEW_LOGIN_OR_REGISTER_TITLE = "com.traveloka.android:id/text_view_login_or_register_title";
+
+    // Login ID
+    public final static String ID_LOGIN_BUTTON = "com.traveloka.android:id/login_button";
+    public final static String ID_REGISTER_BUTTON = "com.traveloka.android:id/register_button";
+    public final static String ID_INFORMATION_FIELD_TEXT_EMAIL = "com.traveloka.android:id/information_field_text_email";
+    public final static String ID_INFORMATION_FIELD_PASSWORD_WIDGET = "com.traveloka.android:id/information_field_password_widget";
+    public final static String ID_TEXT_VIEW_FORGOT_PASSWORD = "com.traveloka.android:id/text_view_forgot_password";
+    public final static String ID_TEXT_VIEW_REGISTER = "com.traveloka.android:id/text_view_register";
+    public final static String ID_WIDGET_BUTTON_LOGIN_WITH_GOOGLE = "com.traveloka.android:id/widget_button_login_with_google";
+    public final static String ID_WIDGET_BUTTON_LOGIN_WITH_FACEBOOK = "com.traveloka.android:id/widget_button_login_with_facebook";
 
     // General Element ID
     public final static String ID_BUTTON_START_SEARCH = "com.traveloka.android:id/button_start_search";

@@ -8,7 +8,7 @@ public class ConfigConstants {
     public final static String APP_PACKAGE = "com.traveloka.android";
     public final static String APP_ACTIVITY = "com.traveloka.android.appentry.splash.SplashActivity";
     public final static String DEFAULT_IP = "127.0.0.1";
-    public final static String DEFAULT_PORT = "4701";
+    public final static String DEFAULT_PORT = "4723";
 
     public final static String ELEMENT_TYPE_ID = "id";
     public final static String ELEMENT_TYPE_TEXT_TEXT_VIEW = "text_text_view";

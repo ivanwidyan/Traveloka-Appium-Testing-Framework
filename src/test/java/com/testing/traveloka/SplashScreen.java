@@ -39,6 +39,8 @@ public class SplashScreen {
 
         String url = "http://" +  ip + ":" + port + "/wd/hub";
         Handler.driver = new AndroidDriver(new URL(url), capabilities);
+
+        System.out.println("Device: " + devicename + " thread: " + Thread.currentThread().getId());
     }
 
     /**
@@ -47,6 +49,8 @@ public class SplashScreen {
     @Test
     @Parameters({"country", "language"})
     public void ChooseCountryLanguage (@Optional String country, @Optional String language) {
+        System.out.println("Executing ChooseCountryLanguage: " + Thread.currentThread().getId());
+
         String countryLanguage = "";
         if (country == null || language == null)
             countryLanguage = ElementConstants.TEXT_INDONESIA_ENGLISH;
@@ -60,6 +64,8 @@ public class SplashScreen {
 
     @Test
     public void SkipSplashScreen () {
+        System.out.println("Executing SkipSplashScreen: " + Thread.currentThread().getId());
+
         Utility.ClickElementByText(Handler.driver, ElementConstants.TEXT_SKIP);
 
         Utility.ClickElementById(Handler.driver, ElementConstants.ID_BUTTON_START_SEARCH);
