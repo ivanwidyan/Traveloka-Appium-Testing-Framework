@@ -9,6 +9,7 @@ package com.testing.traveloka;
 
 import com.testing.Handler;
 import com.testing.Utility;
+import com.testing.logging.Log;
 import com.testing.traveloka.constants.ConfigConstants;
 import com.testing.traveloka.constants.CoordinateConstants;
 import com.testing.traveloka.constants.ElementConstants;
@@ -30,8 +31,11 @@ public class Home {
         Utility.TapByCoordinates(CoordinateConstants.HOME_FLIGHT_X_NO_LOGIN, CoordinateConstants.HOME_FLIGHT_Y_NO_LOGIN);
 
         try {
-            Utility.ClickElementById(Handler.GetCurrentDriver(), ElementConstants.ID_TEXT_VIEW_TOOLTIP_OK, ConfigConstants.TIMEOUT_FALSE);
-        } catch (Exception e) {}
+            Utility.ClickElementById(Handler.GetCurrentDriver(), ElementConstants.ID_TEXT_VIEW_TOOLTIP_OK,
+                    ConfigConstants.TOOLTIP_TIMEOUT);
+        } catch (Exception e) {
+            Log.Debug("Tooltip is not available");
+        }
     }
 
     @Test

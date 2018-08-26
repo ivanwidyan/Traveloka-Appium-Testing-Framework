@@ -9,6 +9,7 @@ package com.testing.traveloka;
 
 import com.testing.Handler;
 import com.testing.Utility;
+import com.testing.logging.Log;
 import com.testing.traveloka.constants.ConfigConstants;
 import com.testing.traveloka.constants.ElementConstants;
 import org.testng.annotations.*;
@@ -18,7 +19,7 @@ public class SplashScreen {
     @Test
     @Parameters({"country", "language"})
     public void ChooseCountryLanguage (@Optional String country, @Optional String language) {
-        String countryLanguage = "";
+        String countryLanguage;
         if (country == null || language == null)
             countryLanguage = ElementConstants.TEXT_INDONESIA_ENGLISH;
         else
@@ -37,7 +38,11 @@ public class SplashScreen {
 
         Utility.ClickElementById(Handler.GetCurrentDriver(), ElementConstants.ID_WIDGET_BUTTON_BLUE);
 
-        Utility.ClickElementById(Handler.GetCurrentDriver(), ElementConstants.ID_TEXT_VIEW_TOOLTIP_OK,
-                ConfigConstants.TIMEOUT_FALSE);// -> tooltip is gone
+        try {
+            Utility.ClickElementById(Handler.GetCurrentDriver(), ElementConstants.ID_TEXT_VIEW_TOOLTIP_OK,
+                    ConfigConstants.TOOLTIP_TIMEOUT);
+        } catch (Exception e) {
+            Log.Debug("Tooltip is not available");
+        }
     }
 }
