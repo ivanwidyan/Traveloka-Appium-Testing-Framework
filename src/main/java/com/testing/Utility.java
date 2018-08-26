@@ -7,7 +7,7 @@
 
 package com.testing;
 
-import com.testing.log.Log;
+import com.testing.logging.Log;
 import com.testing.traveloka.constants.ConfigConstants;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.TouchAction;
@@ -21,7 +21,6 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 public class Utility {
     private final static String NO_SENDKEYS = null;

@@ -2,16 +2,9 @@ package com.testing.traveloka;
 
 import com.testing.Handler;
 import com.testing.Utility;
-import com.testing.constants.CapabilitiesConstants;
-import com.testing.log.Log;
 import com.testing.traveloka.constants.ConfigConstants;
 import com.testing.traveloka.constants.ElementConstants;
-import io.appium.java_client.android.AndroidDriver;
-import org.openqa.selenium.remote.CapabilityType;
-import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.annotations.*;
-
-import java.net.URL;
 
 public class SplashScreen {
 

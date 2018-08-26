@@ -3,9 +3,12 @@ Appium Testing Framework for Traveloka Android App
 
 [![traveloka-icon](https://user-images.githubusercontent.com/12959761/44567746-109a0200-a79e-11e8-8e57-8bed67ac3087.png)](https://www.traveloka.com/en/)
 
-This Appium Traveloka framework is Java implementation of the [Appium](https://github.com/appium/appium) framework for [Selenium](https://github.com/SeleniumHQ/selenium) software-testing framework and [TestNG](https://github.com/cbeust/testng) testing framework to create easy automate testing for Traveloka Android Application which written in Java & XML.
+This Appium Traveloka framework is Java implementation of the [Appium](https://github.com/appium/appium) 
+framework for [Selenium](https://github.com/SeleniumHQ/selenium) software-testing framework and [TestNG](https://github.com/cbeust/testng) 
+testing framework to create easy automate testing for Traveloka Android Application which written in Java & XML.
 
-This testing framework is applying the automation build using [Maven](https://maven.apache.org/) and [Jenkins](https://jenkins.io/) to help to manage the deployment process so continuous testing can be achieved.
+This testing framework is applying the automation build using [Maven](https://maven.apache.org/) and [Jenkins](https://jenkins.io/) 
+with GitHub to help managing the deployment process so continuous integration for testing can be achieved.
 
 ### Development Technology
 Included in `pom.xml` for maven dependency
@@ -14,6 +17,7 @@ Included in `pom.xml` for maven dependency
 * [TestNG](https://github.com/cbeust/testng)
 
 ### Build Automation Tools
+* GitHub
 * [Maven](https://maven.apache.org/)
 * [Jenkins](https://jenkins.io/)
 
@@ -73,8 +77,11 @@ Included in `pom.xml` for maven dependency
 
 ### Examples
 **Flight Purchase:**
-* FL_PR_001
+* Selenium, Appium, TestNG - Automate Test FL_PR_001
 [![Example_FL_PR_001](https://user-images.githubusercontent.com/12959761/44569569-0cbdae00-a7a5-11e8-9369-e6dde61e0fac.png)](https://youtu.be/vVNFc6-9pRs)
+
+* Continuous Integration using Maven & Jenkins using GitHub
+[![Example_FL_PR_002](https://user-images.githubusercontent.com/12959761/44630067-5b746f00-a982-11e8-8fde-02aa9cd91a85.png)](https://youtu.be/6Zx3cgFN-74)
 
 ### Authors
 Ivan Widyan - Creator & Developer (ivanwidyan@yahoo.com)
