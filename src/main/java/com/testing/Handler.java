@@ -1,6 +1,5 @@
 package com.testing;
 
-import com.testing.log.Log;
 import io.appium.java_client.AppiumDriver;
 
 import java.util.HashMap;

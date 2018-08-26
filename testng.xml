@@ -3,7 +3,7 @@
 <suite name="Test Configured Suites" thread-count="1" parallel="false" >
 
     <listeners>
-        <listener class-name = "com.testing.log.CustomListener" />
+        <listener class-name = "com.testing.logging.CustomListener" />
     </listeners>
 
     <suite-files>
