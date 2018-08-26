@@ -32,5 +32,5 @@ public class ConfigConstants {
     public final static String DEFAULT_EMAIL = "ivanwidyan@ivanwidyan.com";
     public final static String DEFAULT_TITLE = "Mr.";
 
-    public final static long TOOLTIP_TIMEOUT = 10;
+    public final static long TOOLTIP_TIMEOUT = 60;
 }

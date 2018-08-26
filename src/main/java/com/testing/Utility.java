@@ -29,7 +29,7 @@ public class Utility {
     private final static boolean CLICK_TRUE = true;
     private final static boolean CLICK_FALSE = false;
 
-    private final static long DEFAULT_TIMEOUT = 30;
+    private final static long DEFAULT_TIMEOUT = 120;
     private final static long ZERO_TIMEOUT = 0;
 
     private final static long DEFAULT_SWIPE_DURATION = 1;
