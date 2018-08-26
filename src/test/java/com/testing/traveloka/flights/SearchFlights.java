@@ -17,14 +17,14 @@ public class SearchFlights {
     @Parameters({"input"})
     public void SetOrigin(@Optional String input) {
         if (input != null) {
-            Utility.ClickElementByText(Handler.driver, ElementConstants.TEXT_ORIGIN);
+            Utility.ClickElementByText(Handler.GetCurrentDriver(), ElementConstants.TEXT_ORIGIN);
 
-            Utility.SendKeysElementById(Handler.driver, ElementConstants.ID_TEXT_SEARCH_CONSTRAINTS, input);
+            Utility.SendKeysElementById(Handler.GetCurrentDriver(), ElementConstants.ID_TEXT_SEARCH_CONSTRAINTS, input);
 
-            List<WebElement> origin = Utility.ClickElementsById(Handler.driver, ElementConstants.ID_TEXT_VIEW_GEO_NAME, ConfigConstants.FIRST_INDEX);
+            List<WebElement> origin = Utility.ClickElementsById(Handler.GetCurrentDriver(), ElementConstants.ID_TEXT_VIEW_GEO_NAME, ConfigConstants.FIRST_INDEX);
 
             if (origin == null) {
-                Utility.ClickElementById(Handler.driver, ElementConstants.ID_TEXT_VIEW_DIALOG_CLOSE);
+                Utility.ClickElementById(Handler.GetCurrentDriver(), ElementConstants.ID_TEXT_VIEW_DIALOG_CLOSE);
                 System.out.println("Origin not found");
             }
         } else {
@@ -36,15 +36,15 @@ public class SearchFlights {
     @Parameters({"input"})
     public void SetDestination(@Optional String input) {
         if (input != null) {
-            Utility.ClickElementByText(Handler.driver, ElementConstants.TEXT_DESTINATION);
+            Utility.ClickElementByText(Handler.GetCurrentDriver(), ElementConstants.TEXT_DESTINATION);
 
-            Utility.SendKeysElementById(Handler.driver, ElementConstants.ID_TEXT_SEARCH_CONSTRAINTS, input);
+            Utility.SendKeysElementById(Handler.GetCurrentDriver(), ElementConstants.ID_TEXT_SEARCH_CONSTRAINTS, input);
 
-            List<WebElement> origin = Utility.ClickElementsById(Handler.driver,
+            List<WebElement> origin = Utility.ClickElementsById(Handler.GetCurrentDriver(),
                     ElementConstants.ID_TEXT_VIEW_GEO_NAME, ConfigConstants.FIRST_INDEX);
 
             if (origin == null) {
-                Utility.ClickElementById(Handler.driver, ElementConstants.ID_TEXT_VIEW_DIALOG_CLOSE);
+                Utility.ClickElementById(Handler.GetCurrentDriver(), ElementConstants.ID_TEXT_VIEW_DIALOG_CLOSE);
                 System.out.println("Destination not found");
             }
         } else {
@@ -56,13 +56,13 @@ public class SearchFlights {
     @Parameters({"date", "month", "year"})
     public void SetDepartureDate(@Optional String date, @Optional String month, @Optional String year) {
         if (date != null) {
-            Utility.ClickElementByText(Handler.driver, ElementConstants.TEXT_DEPARTURE_DATE);
+            Utility.ClickElementByText(Handler.GetCurrentDriver(), ElementConstants.TEXT_DEPARTURE_DATE);
 
             try {
-                Utility.ClickElementById(Handler.driver, ElementConstants.ID_TEXT_VIEW_TOOLTIP_OK, ConfigConstants.TIMEOUT_FALSE);
+                Utility.ClickElementById(Handler.GetCurrentDriver(), ElementConstants.ID_TEXT_VIEW_TOOLTIP_OK, ConfigConstants.TIMEOUT_FALSE);
             } catch (Exception e) {}
 
-            Utility.ClickElementByText(Handler.driver, date);
+            Utility.ClickElementByText(Handler.GetCurrentDriver(), date);
         } else {
             System.out.println("SetDepartureDate doesn't have date input");
         }
@@ -83,18 +83,18 @@ public class SearchFlights {
     @Parameters({"input"})
     public void SetSeatClass(@Optional String input) {
         if (input != null) {
-            Utility.ClickElementByText(Handler.driver, ElementConstants.TEXT_SEAT_CLASS);
+            Utility.ClickElementByText(Handler.GetCurrentDriver(), ElementConstants.TEXT_SEAT_CLASS);
 
             if (ElementConstants.TEXT_ECONOMY.equalsIgnoreCase(input)
                     || ElementConstants.TEXT_BUSINESS.equalsIgnoreCase(input)
                     || ElementConstants.TEXT_FIRST_CLASS.equalsIgnoreCase(input)
                     || ElementConstants.TEXT_PREMIUM_ECONOMY.equalsIgnoreCase(input)) {
-                Utility.ClickElementByText(Handler.driver, input);
+                Utility.ClickElementByText(Handler.GetCurrentDriver(), input);
             } else {
                 System.out.println("Seat Class: " + input + " is not available");
             }
 
-            Utility.ClickElementById(Handler.driver, ElementConstants.ID_WIDGET_BUTTON_ACCEPT);
+            Utility.ClickElementById(Handler.GetCurrentDriver(), ElementConstants.ID_WIDGET_BUTTON_ACCEPT);
         } else {
             System.out.println("SetDepartureDate doesn't have date input");
         }
@@ -102,27 +102,27 @@ public class SearchFlights {
 
     @Test
     public void SwapOriginAndDestination() {
-        Utility.ClickElementById(Handler.driver, ElementConstants.ID_BUTTON_VIEW_SWAP);
+        Utility.ClickElementById(Handler.GetCurrentDriver(), ElementConstants.ID_BUTTON_VIEW_SWAP);
     }
 
     @Test
     public void ReturnSwitch() {
-        Utility.ClickElementById(Handler.driver, ElementConstants.ID_RETURN_SWITCH);
+        Utility.ClickElementById(Handler.GetCurrentDriver(), ElementConstants.ID_RETURN_SWITCH);
     }
 
     @Test(dependsOnMethods = {"ReturnSwitch"})
     @Parameters({"date", "month", "year"})
     public void SetReturnDate(@Optional String date, @Optional String month, @Optional String year) {
         if (date != null) {
-            Utility.ClickElementByText(Handler.driver, ElementConstants.TEXT_RETURN_DATE);
+            Utility.ClickElementByText(Handler.GetCurrentDriver(), ElementConstants.TEXT_RETURN_DATE);
 
             try {
-                Utility.ClickElementById(Handler.driver, ElementConstants.ID_TEXT_VIEW_TOOLTIP_OK, ConfigConstants.TIMEOUT_FALSE);
+                Utility.ClickElementById(Handler.GetCurrentDriver(), ElementConstants.ID_TEXT_VIEW_TOOLTIP_OK, ConfigConstants.TIMEOUT_FALSE);
             } catch (Exception e) {}
 
-            Utility.ClickElementByText(Handler.driver, date);
+            Utility.ClickElementByText(Handler.GetCurrentDriver(), date);
 
-            Utility.ClickElementById(Handler.driver, ElementConstants.ID_TEXT_VIEW_TOOLTIP_ACTION);
+            Utility.ClickElementById(Handler.GetCurrentDriver(), ElementConstants.ID_TEXT_VIEW_TOOLTIP_ACTION);
         } else {
             System.out.println("SetReturnDate doesn't have date input");
         }
@@ -130,6 +130,6 @@ public class SearchFlights {
 
     @Test
     public void SearchFlights() {
-        Utility.ClickElementById(Handler.driver, ElementConstants.ID_BUTTON_CHOOSE_FLIGHT);
+        Utility.ClickElementById(Handler.GetCurrentDriver(), ElementConstants.ID_BUTTON_CHOOSE_FLIGHT);
     }
 }

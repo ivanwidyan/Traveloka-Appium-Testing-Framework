@@ -10,19 +10,17 @@ package com.testing.traveloka.member;
 import com.testing.Handler;
 import com.testing.Utility;
 import com.testing.traveloka.constants.ElementConstants;
-import org.testng.annotations.Optional;
-import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 public class Member {
 
     @Test
     public void Login() {
-        Utility.ClickElementById(Handler.driver, ElementConstants.ID_LOGIN_BUTTON);
+        Utility.ClickElementById(Handler.GetCurrentDriver(), ElementConstants.ID_LOGIN_BUTTON);
     }
 
     @Test
     public void Register() {
-        Utility.ClickElementById(Handler.driver, ElementConstants.ID_REGISTER_BUTTON);
+        Utility.ClickElementById(Handler.GetCurrentDriver(), ElementConstants.ID_REGISTER_BUTTON);
     }
 }

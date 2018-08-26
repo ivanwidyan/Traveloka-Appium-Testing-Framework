@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="FL_SF_SD Search Flight and Set Destination">
-    <test name="FL_SF_SD_001 Search Flight and Set Destination to a City">
+<suite name="FL_SF_SO Search Flight and Set Origin">
+    <test name="FL_SF_SC_001 Search Flight and Set Seat Class to a Economy">
         <classes>
+            <class name="com.testing.traveloka.SetUp"/>
             <class name="com.testing.traveloka.SplashScreen" />
             <class name="com.testing.traveloka.Home">
                 <methods>
@@ -12,15 +13,16 @@
             <class name="com.testing.traveloka.flights.SearchFlights">
                 <methods>
                     <include name="SearchFlightsTooltip"/>
-                    <include name = "SetDestination" >
-                        <parameter name = "input" value="Jakarta"/>
+                    <include name = "SetSeatClass" >
+                        <parameter name = "input" value="Economy"/>
                     </include>
                 </methods>
             </class>
         </classes>
     </test>
-    <test name="FL_SF_SD_002 Search Flight and Set Destination to a Country">
+    <test name="FL_SF_SC_002 Search Flight and Set Seat Class to a Business">
         <classes>
+            <class name="com.testing.traveloka.SetUp"/>
             <class name="com.testing.traveloka.SplashScreen" />
             <class name="com.testing.traveloka.Home">
                 <methods>
@@ -30,15 +32,16 @@
             <class name="com.testing.traveloka.flights.SearchFlights">
                 <methods>
                     <include name="SearchFlightsTooltip"/>
-                    <include name = "SetDestination" >
-                        <parameter name = "input" value="Indonesia"/>
+                    <include name = "SetSeatClass" >
+                        <parameter name = "input" value="Business"/>
                     </include>
                 </methods>
             </class>
         </classes>
     </test>
-    <test name="FL_SF_SD_003 Search Flight and Set Destination to an Airport">
+    <test name="FL_SF_SC_003 Search Flight and Set Seat Class to a First Class">
         <classes>
+            <class name="com.testing.traveloka.SetUp"/>
             <class name="com.testing.traveloka.SplashScreen" />
             <class name="com.testing.traveloka.Home">
                 <methods>
@@ -48,15 +51,16 @@
             <class name="com.testing.traveloka.flights.SearchFlights">
                 <methods>
                     <include name="SearchFlightsTooltip"/>
-                    <include name = "SetDestination" >
-                        <parameter name = "input" value="HLP"/>
+                    <include name = "SetSeatClass" >
+                        <parameter name = "input" value="First Class"/>
                     </include>
                 </methods>
             </class>
         </classes>
     </test>
-    <test name="FL_SF_SD_004 Search Flight and Set Destination to an invalid input">
+    <test name="FL_SF_SC_003 Search Flight and Set Seat Class to a Premium Economy">
         <classes>
+            <class name="com.testing.traveloka.SetUp"/>
             <class name="com.testing.traveloka.SplashScreen" />
             <class name="com.testing.traveloka.Home">
                 <methods>
@@ -66,8 +70,8 @@
             <class name="com.testing.traveloka.flights.SearchFlights">
                 <methods>
                     <include name="SearchFlightsTooltip"/>
-                    <include name = "SetDestination" >
-                        <parameter name = "input" value="test123"/>
+                    <include name = "SetSeatClass" >
+                        <parameter name = "input" value="Premium Economy"/>
                     </include>
                 </methods>
             </class>

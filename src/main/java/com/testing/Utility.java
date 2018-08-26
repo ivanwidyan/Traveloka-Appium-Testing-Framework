@@ -7,6 +7,7 @@
 
 package com.testing;
 
+import com.testing.log.Log;
 import com.testing.traveloka.constants.ConfigConstants;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.TouchAction;
@@ -196,7 +197,8 @@ public class Utility {
             webElement = findWebElement(driver, type, input, timeout);
 
             if (webElement == null) {
-                System.out.println("Result: Timeout " + timeout + "s with input = " + input + ", type = " + type);
+                Log.Warning("Result: Timeout " + timeout + "s with input = " + input + ", type = " + type);
+//                System.out.println("Result: Timeout " + timeout + "s with input = " + input + ", type = " + type);
                 return null;
             } else {
 
@@ -206,8 +208,8 @@ public class Utility {
                 if (sendKeys != null)
                     webElement.sendKeys(sendKeys);
 
-                System.out.println("Result: WebElement found with input = " + input + ", type = " + type
-                        + ", click = " + click + ", sendKeys = " + sendKeys);
+                /*System.out.println("Result: WebElement found with input = " + input + ", type = " + type
+                        + ", click = " + click + ", sendKeys = " + sendKeys);*/
             }
 
             return webElement;
@@ -246,7 +248,7 @@ public class Utility {
 
             webElement = driver.findElement(By.className(input));
         } else {
-            System.out.println("Type is not defined");
+            Log.Error("Type is not defined");
             return null;
         }
         return webElement;
@@ -295,7 +297,8 @@ public class Utility {
             webElement = findWebElements(driver, type, input, timeout);
 
             if (webElement == null) {
-                System.out.println("Result: Timeout " + timeout + "s with input = " + input + ", type = " + type);
+                Log.Warning("Result: Timeout " + timeout + "s with input = " + input + ", type = " + type);
+//                System.out.println("Result: Timeout " + timeout + "s with input = " + input + ", type = " + type);
                 return null;
             } else {
                 if (click) {
@@ -303,8 +306,8 @@ public class Utility {
                     element.click();
                 }
 
-                System.out.println("Result: WebElements found with input = " + input + ", type = " + type
-                        + ", click = " + click + ", index = " + index);
+                /*System.out.println("Result: WebElements found with input = " + input + ", type = " + type
+                        + ", click = " + click + ", index = " + index);*/
             }
 
             return webElement;
@@ -325,7 +328,7 @@ public class Utility {
 
             webElement = driver.findElements(By.className(input));
         } else {
-            System.out.println("Type is not defined");
+            Log.Error("Type is not defined");
             return null;
         }
         return webElement;

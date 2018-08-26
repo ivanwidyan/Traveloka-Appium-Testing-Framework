@@ -1,22 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--
-  ~ Copyright (c) 2018. Ivan Widyan - All Rights Reserved
-  ~ Unauthorized copying of this file, via any medium is strictly prohibited
-  ~ Proprietary and confidential
-  ~ Email: <ivanrwidyan@gmail.com>
-  -->
-
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Flight Purchase Test Parallel (Multithread)" thread-count="2" parallel="tests">
-    <test name="FL_PR_001 Purchase Economy Flight From HLP (Jakarta) to Yogyakarta (Swap)
-                AND Sort By Earliest Departure, pick first row, then skip Booking Summary
+<suite name="Flight Purchase Test" thread-count="1" parallel="false">
+    <test enabled="true" name="FL_PR_001 Purchase Economy Flight From HLP (Jakarta) to Yogyakarta (Swap)
+                AND search and Sort By Earliest Departure, pick first row, then skip Booking Summary
                 AND Fill in Contact Details and TravelerDetails, then continue">
 
-        <parameter name = "devicename" value="Nexus_5X_API_25_1"/>
-        <parameter name = "udid" value="emulator-5554"/>
-        <parameter name = "port" value="4701"/>
-
         <classes>
+            <class name="com.testing.traveloka.SetUp"/>
             <class name="com.testing.traveloka.SplashScreen" />
             <class name="com.testing.traveloka.Home">
                 <methods>
@@ -58,14 +48,12 @@
         </classes>
     </test>
 
-    <test name="FL_PR_002 Purchase Business Flight From Surabaya to Bali, set Departure Date 28
+    <test enabled="true" name="FL_PR_002 Purchase Business Flight From Surabaya to Bali, set Departure Date 28
                 AND search and pick first row, then skip Booking Summary
                 AND Fill in Contact Details and TravelerDetails, then continue">
-        <parameter name = "devicename" value="Nexus_5X_API_25_2"/>
-        <parameter name = "udid" value="emulator-5556"/>
-        <parameter name = "port" value="4702"/>
 
         <classes>
+            <class name="com.testing.traveloka.SetUp"/>
             <class name="com.testing.traveloka.SplashScreen" />
             <class name="com.testing.traveloka.Home">
                 <methods>

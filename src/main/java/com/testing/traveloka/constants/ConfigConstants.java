@@ -2,7 +2,7 @@ package com.testing.traveloka.constants;
 
 public class ConfigConstants {
     // Capabilities Set up
-    public final static String DEVICE_NAME = "Nexus_5X_API_25_1";
+    public final static String DEVICE_NAME = "emulator";
     public final static String BROWSER_NAME = "Android";
     public final static String PLATFORM_NAME = "Android";
     public final static String APP_PACKAGE = "com.traveloka.android";

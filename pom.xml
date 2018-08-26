@@ -6,7 +6,7 @@
 
     <groupId>com.traveloka.testing</groupId>
     <artifactId>traveloka-appium-testing</artifactId>
-    <version>0.0.3</version>
+    <version>0.0.4</version>
 
     <properties>
         <selenium.version>3.14.0</selenium.version>
@@ -17,7 +17,7 @@
         <maven.compiler.target>1.8</maven.compiler.target>
 
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <suiteXmlFile>${basedir}/src/main/resources/com.testing.traveloka.scenario/flights/purchase/FL_PR.xml</suiteXmlFile>
+        <suiteXmlFile>${basedir}/testng.xml</suiteXmlFile>
         <skipTests>false</skipTests>
     </properties>
 
