@@ -143,7 +143,7 @@ public class SearchFlights {
     }
 
     @Test
-    public void SearchFlight() {
+    public void SearchFlights() {
         Utility.ClickElementById(Handler.GetCurrentDriver(), ElementConstants.ID_BUTTON_CHOOSE_FLIGHT);
     }
 }
