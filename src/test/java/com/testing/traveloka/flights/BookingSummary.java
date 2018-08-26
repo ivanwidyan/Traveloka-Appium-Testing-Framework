@@ -19,8 +19,8 @@ public class BookingSummary {
 
     @Test
     public void Select() {
-        Utility.GetElementByText(Handler.driver, ElementConstants.TEXT_FLIGHT);
+        Utility.GetElementByText(Handler.GetCurrentDriver(), ElementConstants.TEXT_FLIGHT);
 
-        Utility.ClickElementById(Handler.driver, ElementConstants.ID_BUTTON_SELECT);
+        Utility.ClickElementById(Handler.GetCurrentDriver(), ElementConstants.ID_BUTTON_SELECT);
     }
 }

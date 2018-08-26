@@ -10,31 +10,29 @@ import io.appium.java_client.touch.offset.PointOption;
 
 import org.testng.annotations.*;
 
-import java.net.URL;
-
 public class Home {
 
     @Test
     public void ClickFlights () {
         /*System.out.println("test before swipe");
-        Utility.SwipeVerticalByCoordinate(Handler.driver, CoordinateConstants.FILL_IN_DETAILS_START_Y
+        Utility.SwipeVerticalByCoordinate(SetUp.GetCurrentDriver(), CoordinateConstants.FILL_IN_DETAILS_START_Y
                 , CoordinateConstants.FILL_IN_DETAILS_END_Y, CoordinateConstants.FILL_IN_DETAILS_ANCHOR_X);
         System.out.println("test after swipe");*/
 
         // Get element by text is too heavy at this point
-//        Utility.ClickElementByText(Handler.driver, ElementConstants.TEXT_FLIGHTS);
+//        Utility.ClickElementByText(SetUp.GetCurrentDriver(), ElementConstants.TEXT_FLIGHTS);
 
-        TouchAction touchAction = new TouchAction(Handler.driver);
+        // TODO: Encapsulate this into Utility
+        TouchAction touchAction = new TouchAction(Handler.GetCurrentDriver());
         touchAction.tap(PointOption.point(CoordinateConstants.HOME_FLIGHT_X, CoordinateConstants.HOME_FLIGHT_Y)).perform();
-        System.out.println("Tap at coordinate x = 110 & y=505");
 
         try {
-            Utility.ClickElementById(Handler.driver, ElementConstants.ID_TEXT_VIEW_TOOLTIP_OK, ConfigConstants.TIMEOUT_FALSE);
+            Utility.ClickElementById(Handler.GetCurrentDriver(), ElementConstants.ID_TEXT_VIEW_TOOLTIP_OK, ConfigConstants.TIMEOUT_FALSE);
         } catch (Exception e) {}
     }
 
     @Test
     public void ClickLoginOrRegister () {
-        Utility.ClickElementById(Handler.driver, ElementConstants.ID_TEXT_VIEW_LOGIN_OR_REGISTER_TITLE);
+        Utility.ClickElementById(Handler.GetCurrentDriver(), ElementConstants.ID_TEXT_VIEW_LOGIN_OR_REGISTER_TITLE);
     }
 }
