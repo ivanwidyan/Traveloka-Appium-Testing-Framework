@@ -1,3 +1,10 @@
+/*
+ * Copyright (c) 2018. Ivan Widyan - All Rights Reserved
+ * Unauthorized copying of this file, via any medium is strictly prohibited
+ * Proprietary and confidential
+ * Email: ivanwidyan@yahoo.com
+ */
+
 package com.testing.traveloka;
 
 import com.testing.Handler;
@@ -8,9 +15,6 @@ import org.testng.annotations.*;
 
 public class SplashScreen {
 
-    /**
-     * Choose Country & Language using parameters
-     */
     @Test
     @Parameters({"country", "language"})
     public void ChooseCountryLanguage (@Optional String country, @Optional String language) {

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="Flight Purchase Test Parallel (Multithread)" thread-count="2" parallel="tests">
-    <test name="FL_PR_001 Purchase Economy Flight From HLP (Jakarta) to Yogyakarta (Swap)
+    <test name="FL_PR_001 Purchase Economy Flight From Jakarta to Yogyakarta (Swap)
                 AND Sort By Earliest Departure, pick first row, then skip Booking Summary
                 AND Fill in Contact Details and TravelerDetails, then continue">
 
-        <parameter name = "devicename" value="Nexus_5X_API_25_1"/>
+        <!--<parameter name = "devicename" value="Nexus_5X_API_25_1"/>-->
         <parameter name = "udid" value="emulator-5554"/>
         <parameter name = "port" value="4701"/>
 
@@ -21,7 +21,7 @@
                 <methods>
                     <include name="SearchFlightsTooltip"/>
                     <include name = "SetOrigin" >
-                        <parameter name = "input" value="HLP"/>
+                        <parameter name = "input" value="Jakarta"/>
                     </include>
                     <include name = "SetDestination" >
                         <parameter name = "input" value="Yogyakarta"/>
@@ -55,7 +55,7 @@
     <test name="FL_PR_002 Purchase Business Flight From Surabaya to Bali, set Departure Date 28
                 AND search and pick first row, then skip Booking Summary
                 AND Fill in Contact Details and TravelerDetails, then continue">
-        <parameter name = "devicename" value="Nexus_5X_API_25_2"/>
+        <!--<parameter name = "devicename" value="Nexus_5X_API_25_2"/>-->
         <parameter name = "udid" value="emulator-5556"/>
         <parameter name = "port" value="4702"/>
 

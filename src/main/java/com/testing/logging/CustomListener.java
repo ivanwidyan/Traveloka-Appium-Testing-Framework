@@ -1,3 +1,10 @@
+/*
+ * Copyright (c) 2018. Ivan Widyan - All Rights Reserved
+ * Unauthorized copying of this file, via any medium is strictly prohibited
+ * Proprietary and confidential
+ * Email: ivanwidyan@yahoo.com
+ */
+
 package com.testing.logging;
 
 import org.testng.ITestResult;
@@ -14,7 +21,7 @@ public class CustomListener extends TestListenerAdapter {
     @Override
     public void onTestStart(ITestResult tr) {
         String info = tr.getTestClass().getRealClass().getSimpleName()
-                + "|Executing " + tr.getName();
+                + "|Executing " + tr.getName() + "|Thread " + Thread.currentThread().getId();
 
         Map params = tr.getMethod().findMethodParameters(tr.getMethod().getXmlTest());
         if (!params.isEmpty()) {

@@ -2,13 +2,14 @@
  * Copyright (c) 2018. Ivan Widyan - All Rights Reserved
  * Unauthorized copying of this file, via any medium is strictly prohibited
  * Proprietary and confidential
- * Email: <ivanrwidyan@gmail.com>
+ * Email: ivanwidyan@yahoo.com
  */
 
 package com.testing;
 
 import com.testing.logging.Log;
 import com.testing.traveloka.constants.ConfigConstants;
+import com.testing.traveloka.constants.CoordinateConstants;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.TouchAction;
 import io.appium.java_client.touch.WaitOptions;
@@ -334,13 +335,23 @@ public class Utility {
     }
 
     /**
+     * Tap in x and y coordinates
+     * @param x coordinate
+     * @param y coordinate
+     */
+    public static void TapByCoordinates (int x, int y) {
+        TouchAction touchAction = new TouchAction(Handler.GetCurrentDriver());
+        touchAction.tap(PointOption.point(x, y)).perform();
+    }
+
+    /**
      * Swipe screen vertically by anchor start point, end point, and anchor
      * @param driver
      * @param startPoint in y coordinates
      * @param endPoint in y coordinates
      * @param anchor in x coordinates
      */
-    public static void SwipeVerticalByCoordinate (AppiumDriver driver, int startPoint, int endPoint, int anchor) {
+    public static void SwipeVerticalByCoordinates(AppiumDriver driver, int startPoint, int endPoint, int anchor) {
         TouchAction touchAction = new TouchAction(driver);
         touchAction.press(PointOption.point(anchor, startPoint))
                 .waitAction(WaitOptions.waitOptions(Duration.ofSeconds(DEFAULT_SWIPE_DURATION)))
@@ -355,7 +366,7 @@ public class Utility {
      * @param endPoint in y coordinates
      * @param anchor in y coordinates
      */
-    public static void SwipeHorizontalByCoordinate (AppiumDriver driver, int startPoint, int endPoint, int anchor) {
+    public static void SwipeHorizontalByCoordinates (AppiumDriver driver, int startPoint, int endPoint, int anchor) {
         TouchAction touchAction = new TouchAction(driver);
         touchAction.press(PointOption.point(startPoint, anchor))
                 .waitAction(WaitOptions.waitOptions(Duration.ofSeconds(DEFAULT_SWIPE_DURATION)))
@@ -371,7 +382,7 @@ public class Utility {
      * @param endX
      * @param endY
      */
-    public static void SwipeByCoordinate (AppiumDriver driver, int startX, int startY, int endX, int endY) {
+    public static void SwipeByCoordinates (AppiumDriver driver, int startX, int startY, int endX, int endY) {
         TouchAction touchAction = new TouchAction(driver);
         touchAction.press(PointOption.point(startX, startY))
                 .waitAction(WaitOptions.waitOptions(Duration.ofSeconds(DEFAULT_SWIPE_DURATION)))
