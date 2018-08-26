@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="Flight Purchase Test" thread-count="1" parallel="false">
-    <test enabled="true" name="FL_PR_001 Purchase Economy Flight From HLP (Jakarta) to Yogyakarta (Swap)
+    <test enabled="false" name="FL_PR_001 Purchase Economy Flight From HLP (Jakarta) to Yogyakarta (Swap)
                 AND search and Sort By Earliest Departure, pick first row, then skip Booking Summary
                 AND Fill in Contact Details and TravelerDetails, then continue">
 
