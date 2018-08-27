@@ -8,57 +8,99 @@
 package com.testing;
 
 import io.appium.java_client.AppiumDriver;
+import org.openqa.selenium.WebDriver;
 
 import java.util.HashMap;
 
 public class Handler {
 
     private static HashMap<Long, AppiumDriver> AppiumDriver;
+    private static HashMap<Long, WebDriver> WebDriver;
 
     /**
      * Handler initialization
      */
     public static void init () {
-        SetDriverHashmap(new HashMap<Long, AppiumDriver>());
+        SetAppiumDriverHashmap(new HashMap<Long, AppiumDriver>());
+        SetWebDriverHashmap(new HashMap<Long, WebDriver>());
     }
 
     /**
      * Get AppiumDriver Hashmap
-     * @return Appium Driver Hashmap
+     * @return Appium Appium Driver Hashmap
      */
-    public static HashMap<Long, AppiumDriver> GetDriverHashmap() {
+    public static HashMap<Long, AppiumDriver> GetAppiumDriverHashmap() {
         return AppiumDriver;
     }
 
     /**
-     * Set Driver Hashmap
+     * Set Appium Driver Hashmap
      * @param driverHashMap
      */
-    public static void SetDriverHashmap(HashMap<Long, AppiumDriver> driverHashMap) {
+    public static void SetAppiumDriverHashmap(HashMap<Long, AppiumDriver> driverHashMap) {
         AppiumDriver = driverHashMap;
     }
 
     /**
-     * Get Current Driver which running on the Current Thread
+     * Get Current Appium Driver which running on the Current Thread
      * @return AppiumDriver
      */
-    public static AppiumDriver GetCurrentDriver() {
+    public static AppiumDriver GetCurrentAppiumDriver() {
         return Handler.AppiumDriver.get(Thread.currentThread().getId());
     }
 
     /**
-     * Set Current Driver to run on the Current Thread
+     * Set Current Appium Driver to run on the Current Thread
      * @param driver
      */
-    public static void SetCurrentDriver (AppiumDriver driver) {
+    public static void SetCurrentAppiumDriver(AppiumDriver driver) {
         Handler.AppiumDriver.put(Thread.currentThread().getId(), driver);
     }
 
     /**
      * Clear AppiumDriver Hashmap
      */
-    public static void ClearDriverHashmap () {
+    public static void ClearAppiumDriverHashmap() {
         AppiumDriver.clear();
+    }
+
+    /**
+     * Get WebDriver Hashmap
+     * @return Web Driver Hashmap
+     */
+    public static HashMap<Long, WebDriver> GetWebDriverHashmap() {
+        return WebDriver;
+    }
+
+    /**
+     * Set Web Driver Hashmap
+     * @param driverHashMap
+     */
+    public static void SetWebDriverHashmap(HashMap<Long, WebDriver> driverHashMap) {
+         WebDriver = driverHashMap;
+    }
+
+    /**
+     * Get Current Web Driver which running on the Current Thread
+     * @return AppiumDriver
+     */
+    public static WebDriver GetCurrentWebDriver() {
+        return Handler.WebDriver.get(Thread.currentThread().getId());
+    }
+
+    /**
+     * Set Current Web Driver to run on the Current Thread
+     * @param driver
+     */
+    public static void SetCurrentWebDriver (WebDriver driver) {
+        Handler.WebDriver.put(Thread.currentThread().getId(), driver);
+    }
+
+    /**
+     * Clear WebDriver Hashmap
+     */
+    public static void ClearWebDriverHashmap() {
+        WebDriver.clear();
     }
 
 }

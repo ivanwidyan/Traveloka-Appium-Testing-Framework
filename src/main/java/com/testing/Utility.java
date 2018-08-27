@@ -9,7 +9,6 @@ package com.testing;
 
 import com.testing.logging.Log;
 import com.testing.traveloka.constants.ConfigConstants;
-import com.testing.traveloka.constants.CoordinateConstants;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.TouchAction;
 import io.appium.java_client.touch.WaitOptions;
@@ -29,7 +28,7 @@ public class Utility {
     private final static boolean CLICK_TRUE = true;
     private final static boolean CLICK_FALSE = false;
 
-    private final static long DEFAULT_TIMEOUT = 120;
+    private final static long DEFAULT_TIMEOUT = 30;
     private final static long ZERO_TIMEOUT = 0;
 
     private final static long DEFAULT_SWIPE_DURATION = 1;
@@ -238,6 +237,11 @@ public class Utility {
 
             webElement = driver.findElement(By.xpath(xpath));
 
+        } else if (type.equals(ConfigConstants.ELEMENT_TYPE_DIV_CLASS)) {
+            String xpath = "//div[@class='" + input + "']";
+            wait.until(ExpectedConditions.elementToBeClickable(By.xpath(xpath)));
+
+            webElement = driver.findElement(By.xpath(xpath));
         } else if (type.equals(ConfigConstants.ELEMENT_TYPE_ID)) {
             wait.until(ExpectedConditions.elementToBeClickable(By.id(input)));
 
@@ -273,6 +277,12 @@ public class Utility {
      */
     public static List<WebElement> ClickElementsById (WebDriver driver, String id, int index) {
         return webElementsUtility(driver, id, ConfigConstants.ELEMENT_TYPE_ID, CLICK_TRUE,
+                index, DEFAULT_TIMEOUT);
+    }
+
+    public static List<WebElement> ClickElementsByValue (WebDriver driver, String value
+            , String type, int index) {
+        return webElementsUtility(driver, value, type, CLICK_TRUE,
                 index, DEFAULT_TIMEOUT);
     }
 
@@ -318,7 +328,12 @@ public class Utility {
         List<WebElement> webElement;
         WebDriverWait wait = new WebDriverWait(driver, timeout);
 
-        if (type.equals(ConfigConstants.ELEMENT_TYPE_ID)) {
+        if (type.equals(ConfigConstants.ELEMENT_TYPE_DIV_CLASS)) {
+            String xpath = "//div[@class='" + input + "']";
+            wait.until(ExpectedConditions.elementToBeClickable(By.xpath(xpath)));
+
+            webElement = driver.findElements(By.xpath(xpath));
+        } else if (type.equals(ConfigConstants.ELEMENT_TYPE_ID)) {
             wait.until(ExpectedConditions.elementToBeClickable(By.id(input)));
 
             webElement = driver.findElements(By.id(input));
@@ -340,7 +355,7 @@ public class Utility {
      * @param y coordinate
      */
     public static void TapByCoordinates (int x, int y) {
-        TouchAction touchAction = new TouchAction(Handler.GetCurrentDriver());
+        TouchAction touchAction = new TouchAction(Handler.GetCurrentAppiumDriver());
         touchAction.tap(PointOption.point(x, y)).perform();
     }
 

@@ -24,6 +24,9 @@ public class ConfigConstants {
     public final static boolean TIMEOUT_FALSE = false;
     public final static String ENTER = "\n";
 
+    // Web Setup
+    public final static String ELEMENT_TYPE_DIV_CLASS = "div_class";
+
     public final static int FIRST_INDEX = 0;
     public final static int SECOND_INDEX = 1;
 

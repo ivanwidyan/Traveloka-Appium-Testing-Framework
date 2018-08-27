@@ -24,9 +24,9 @@ public class SelectFlight {
     @Parameters({"input"})
     public void SortBy(@Optional String input) {
         if (input != null) {
-            Utility.GetElementsById(Handler.GetCurrentDriver(), ElementConstants.ID_TEXT_VIEW_FLIGHT_NAME);
+            Utility.GetElementsById(Handler.GetCurrentAppiumDriver(), ElementConstants.ID_TEXT_VIEW_FLIGHT_NAME);
 
-            Utility.ClickElementById(Handler.GetCurrentDriver(), ElementConstants.ID_TEXT_VIEW_SORT);
+            Utility.ClickElementById(Handler.GetCurrentAppiumDriver(), ElementConstants.ID_TEXT_VIEW_SORT);
 
             if (ElementConstants.TEXT_LOWEST_PRICE.equalsIgnoreCase(input)
                     || ElementConstants.TEXT_EARLIEST_DEPARTURE.equalsIgnoreCase(input)
@@ -35,7 +35,7 @@ public class SelectFlight {
                     || ElementConstants.TEXT_LATEST_ARRIVAL.equalsIgnoreCase(input)
                     || ElementConstants.TEXT_SHORTEST_DURATION.equalsIgnoreCase(input)) {
 
-                Utility.ClickElementByText(Handler.GetCurrentDriver(), input);
+                Utility.ClickElementByText(Handler.GetCurrentAppiumDriver(), input);
             } else {
                 System.out.println("Flight Sort By: " + input + " is not available");
             }
@@ -59,15 +59,15 @@ public class SelectFlight {
             index = Integer.parseInt(input);
         }
 
-        Utility.ClickElementsById(Handler.GetCurrentDriver(), ElementConstants.ID_TEXT_VIEW_FLIGHT_NAME, index);
+        Utility.ClickElementsById(Handler.GetCurrentAppiumDriver(), ElementConstants.ID_TEXT_VIEW_FLIGHT_NAME, index);
     }
 
     @Test
     public void PrintFlight() {
-        PrintFlightInformation(Utility.GetElementsById(Handler.GetCurrentDriver(), ElementConstants.ID_TEXT_VIEW_FLIGHT_NAME),
-                Utility.GetElementsById(Handler.GetCurrentDriver(), ElementConstants.ID_TEXT_VIEW_FLIGHT_TIME),
-                Utility.GetElementsById(Handler.GetCurrentDriver(), ElementConstants.ID_TEXT_VIEW_INFORMATION),
-                Utility.GetElementsById(Handler.GetCurrentDriver(), ElementConstants.ID_TEXT_VIEW_REDUCED_PRICE));
+        PrintFlightInformation(Utility.GetElementsById(Handler.GetCurrentAppiumDriver(), ElementConstants.ID_TEXT_VIEW_FLIGHT_NAME),
+                Utility.GetElementsById(Handler.GetCurrentAppiumDriver(), ElementConstants.ID_TEXT_VIEW_FLIGHT_TIME),
+                Utility.GetElementsById(Handler.GetCurrentAppiumDriver(), ElementConstants.ID_TEXT_VIEW_INFORMATION),
+                Utility.GetElementsById(Handler.GetCurrentAppiumDriver(), ElementConstants.ID_TEXT_VIEW_REDUCED_PRICE));
     }
 
     private void PrintFlightInformation (List<WebElement> listFlights, List<WebElement> listTimes,

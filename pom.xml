@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.traveloka.testing</groupId>
-    <artifactId>traveloka-appium-testing</artifactId>
+    <artifactId>traveloka-testing-framework</artifactId>
     <version>0.0.4</version>
 
     <properties>

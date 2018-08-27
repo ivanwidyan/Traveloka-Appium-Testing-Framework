@@ -6,9 +6,11 @@
         <listener class-name = "com.testing.logging.CustomListener" />
     </listeners>
 
+    <parameter name = "browser" value="Firefox"/>
+
     <suite-files>
-        <suite-file path="src/main/resources/scenario/flights/purchase/FL_PR (Multithread).xml"/>
-        <!--<suite-file path="src/main/resources/scenario/flights/purchase/FL_PR.xml"/>-->
+        <!--<suite-file path="src/main/resources/scenario/flights/purchase/FL_PR (Multithread).xml"/>-->
+        <suite-file path="src/main/resources/scenario/flights/purchase/FL_PR.xml"/>
         <!--<suite-file path="src/main/resources/scenario/flights/search/setOrigin/FL_SF_SO.xml"/>-->
     </suite-files>
 </suite>

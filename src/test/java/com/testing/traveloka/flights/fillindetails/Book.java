@@ -31,14 +31,14 @@ public class Book {
     public void FillInContactDetails (@Optional String fullname, @Optional String countrycode,
                                       @Optional String mobilenumber, @Optional String email) {
 
-        Utility.GetElementByText(Handler.GetCurrentDriver(), ElementConstants.TEXT_CONTACT_DETAILS);
+        Utility.GetElementByText(Handler.GetCurrentAppiumDriver(), ElementConstants.TEXT_CONTACT_DETAILS);
 
-        Utility.SwipeVerticalByCoordinates(Handler.GetCurrentDriver(), CoordinateConstants.FILL_IN_DETAILS_START_Y
+        Utility.SwipeVerticalByCoordinates(Handler.GetCurrentAppiumDriver(), CoordinateConstants.FILL_IN_DETAILS_START_Y
                 , CoordinateConstants.FILL_IN_DETAILS_END_Y, CoordinateConstants.FILL_IN_DETAILS_ANCHOR_X);
 
-        Utility.ClickElementByText(Handler.GetCurrentDriver(), ElementConstants.TEXT_FILL_IN_CONTACT_DETAILS);
+        Utility.ClickElementByText(Handler.GetCurrentAppiumDriver(), ElementConstants.TEXT_FILL_IN_CONTACT_DETAILS);
 
-        List<WebElement> textBox = Utility.GetElementsByClass(Handler.GetCurrentDriver(), ElementConstants.CLASS_ANDROID_WIDGET_EDITTEXT);
+        List<WebElement> textBox = Utility.GetElementsByClass(Handler.GetCurrentAppiumDriver(), ElementConstants.CLASS_ANDROID_WIDGET_EDITTEXT);
 
         if (fullname == null)
             fullname = ConfigConstants.DEFAULT_FULLNAME;
@@ -56,38 +56,38 @@ public class Book {
         String emailEnter = email + ConfigConstants.ENTER;
         textBox.get(EMAIL_TEXTBOX_INDEX).sendKeys(emailEnter);
 
-        Utility.ClickElementById(Handler.GetCurrentDriver(), ElementConstants.ID_BUTTON_SAVE);
+        Utility.ClickElementById(Handler.GetCurrentAppiumDriver(), ElementConstants.ID_BUTTON_SAVE);
     }
 
     @Test
     @Parameters({"traveler", "title", "fullname"})
     public void TravelerDetails (String traveler, @Optional String title, @Optional String fullname) {
 
-        Utility.GetElementByText(Handler.GetCurrentDriver(), ElementConstants.TEXT_CONTACT_DETAILS);
+        Utility.GetElementByText(Handler.GetCurrentAppiumDriver(), ElementConstants.TEXT_CONTACT_DETAILS);
 
-        Utility.SwipeVerticalByCoordinates(Handler.GetCurrentDriver(), CoordinateConstants.FILL_IN_DETAILS_START_Y
+        Utility.SwipeVerticalByCoordinates(Handler.GetCurrentAppiumDriver(), CoordinateConstants.FILL_IN_DETAILS_START_Y
                 , CoordinateConstants.FILL_IN_DETAILS_END_Y, CoordinateConstants.FILL_IN_DETAILS_ANCHOR_X);
 
-        Utility.ClickElementByText(Handler.GetCurrentDriver(), traveler);
+        Utility.ClickElementByText(Handler.GetCurrentAppiumDriver(), traveler);
 
-        Utility.ClickElementByClassName(Handler.GetCurrentDriver(), ElementConstants.CLASS_ANDROID_WIDGET_SPINNER);
+        Utility.ClickElementByClassName(Handler.GetCurrentAppiumDriver(), ElementConstants.CLASS_ANDROID_WIDGET_SPINNER);
 
         if (title == null) {
             title = ConfigConstants.DEFAULT_TITLE;
         }
-        Utility.ClickElementByText(Handler.GetCurrentDriver(), title);
+        Utility.ClickElementByText(Handler.GetCurrentAppiumDriver(), title);
 
         if (fullname == null) {
             fullname = ConfigConstants.DEFAULT_FULLNAME;
         }
-        Utility.SendKeysElementByClassName(Handler.GetCurrentDriver()
+        Utility.SendKeysElementByClassName(Handler.GetCurrentAppiumDriver()
                 , ElementConstants.CLASS_ANDROID_WIDGET_EDITTEXT, fullname);
 
-        Utility.ClickElementById(Handler.GetCurrentDriver(), ElementConstants.ID_BUTTON_SAVE);
+        Utility.ClickElementById(Handler.GetCurrentAppiumDriver(), ElementConstants.ID_BUTTON_SAVE);
     }
 
     @Test(dependsOnMethods = {"FillInContactDetails", "TravelerDetails"})
     public void Continue () {
-        Utility.ClickElementById(Handler.GetCurrentDriver(), ElementConstants.ID_TEXT_VIEW_SEE_BELOW_VIEW);
+        Utility.ClickElementById(Handler.GetCurrentAppiumDriver(), ElementConstants.ID_TEXT_VIEW_SEE_BELOW_VIEW);
     }
 }

@@ -16,27 +16,39 @@ import org.openqa.selenium.WebElement;
 import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
+import sun.security.ssl.Debug;
 
 import java.util.List;
 
 public class SearchFlights {
 
     @Test
-    @Parameters({"input"})
-    public void SetOrigin(@Optional String input) {
-        if (input != null) {
-            Utility.ClickElementByText(Handler.GetCurrentDriver(), ElementConstants.TEXT_ORIGIN);
+    @Parameters({"browser", "input"})
+    public void SetOrigin(@Optional String browser, @Optional String input) {
+        if (browser.equalsIgnoreCase("Android")) {
+            if (input != null) {
+                Utility.ClickElementByText(Handler.GetCurrentAppiumDriver(), ElementConstants.TEXT_ORIGIN);
 
-            Utility.SendKeysElementById(Handler.GetCurrentDriver(), ElementConstants.ID_TEXT_SEARCH_CONSTRAINTS, input);
+                Utility.SendKeysElementById(Handler.GetCurrentAppiumDriver(), ElementConstants.ID_TEXT_SEARCH_CONSTRAINTS, input);
 
-            List<WebElement> origin = Utility.ClickElementsById(Handler.GetCurrentDriver(), ElementConstants.ID_TEXT_VIEW_GEO_NAME, ConfigConstants.FIRST_INDEX);
+                List<WebElement> origin = Utility.ClickElementsById(Handler.GetCurrentAppiumDriver(), ElementConstants.ID_TEXT_VIEW_GEO_NAME, ConfigConstants.FIRST_INDEX);
 
-            if (origin == null) {
-                Utility.ClickElementById(Handler.GetCurrentDriver(), ElementConstants.ID_TEXT_VIEW_DIALOG_CLOSE);
-                System.out.println("Origin not found");
+                if (origin == null) {
+                    Utility.ClickElementById(Handler.GetCurrentAppiumDriver(), ElementConstants.ID_TEXT_VIEW_DIALOG_CLOSE);
+                    System.out.println("Origin not found");
+                }
+            } else {
+                System.out.println("setOrigin doesn't have input");
             }
-        } else {
-            System.out.println("setOrigin doesn't have input");
+        } else if (browser.equalsIgnoreCase("Firefox")) {
+            Log.Debug("Try to change flight source");
+
+            Utility.SendKeysElementById(Handler.GetCurrentWebDriver(), "flightSource", input);
+
+            List<WebElement> origin = Utility.ClickElementsByValue(Handler.GetCurrentAppiumDriver()
+                    , "suggestionItem", ConfigConstants.ELEMENT_TYPE_DIV_CLASS, ConfigConstants.SECOND_INDEX);
+
+            Log.Debug("Click index no. 2");
         }
     }
 
@@ -44,15 +56,15 @@ public class SearchFlights {
     @Parameters({"input"})
     public void SetDestination(@Optional String input) {
         if (input != null) {
-            Utility.ClickElementByText(Handler.GetCurrentDriver(), ElementConstants.TEXT_DESTINATION);
+            Utility.ClickElementByText(Handler.GetCurrentAppiumDriver(), ElementConstants.TEXT_DESTINATION);
 
-            Utility.SendKeysElementById(Handler.GetCurrentDriver(), ElementConstants.ID_TEXT_SEARCH_CONSTRAINTS, input);
+            Utility.SendKeysElementById(Handler.GetCurrentAppiumDriver(), ElementConstants.ID_TEXT_SEARCH_CONSTRAINTS, input);
 
-            List<WebElement> origin = Utility.ClickElementsById(Handler.GetCurrentDriver(),
+            List<WebElement> origin = Utility.ClickElementsById(Handler.GetCurrentAppiumDriver(),
                     ElementConstants.ID_TEXT_VIEW_GEO_NAME, ConfigConstants.FIRST_INDEX);
 
             if (origin == null) {
-                Utility.ClickElementById(Handler.GetCurrentDriver(), ElementConstants.ID_TEXT_VIEW_DIALOG_CLOSE);
+                Utility.ClickElementById(Handler.GetCurrentAppiumDriver(), ElementConstants.ID_TEXT_VIEW_DIALOG_CLOSE);
                 System.out.println("Destination not found");
             }
         } else {
@@ -64,16 +76,16 @@ public class SearchFlights {
     @Parameters({"date", "month", "year"})
     public void SetDepartureDate(@Optional String date, @Optional String month, @Optional String year) {
         if (date != null) {
-            Utility.ClickElementByText(Handler.GetCurrentDriver(), ElementConstants.TEXT_DEPARTURE_DATE);
+            Utility.ClickElementByText(Handler.GetCurrentAppiumDriver(), ElementConstants.TEXT_DEPARTURE_DATE);
 
             try {
-                Utility.ClickElementById(Handler.GetCurrentDriver(), ElementConstants.ID_TEXT_VIEW_TOOLTIP_OK,
+                Utility.ClickElementById(Handler.GetCurrentAppiumDriver(), ElementConstants.ID_TEXT_VIEW_TOOLTIP_OK,
                         ConfigConstants.TOOLTIP_TIMEOUT);
             } catch (Exception e) {
                 Log.Debug("Tooltip is not available");
             }
 
-            Utility.ClickElementByText(Handler.GetCurrentDriver(), date);
+            Utility.ClickElementByText(Handler.GetCurrentAppiumDriver(), date);
         } else {
             System.out.println("SetDepartureDate doesn't have date input");
         }
@@ -94,18 +106,18 @@ public class SearchFlights {
     @Parameters({"input"})
     public void SetSeatClass(@Optional String input) {
         if (input != null) {
-            Utility.ClickElementByText(Handler.GetCurrentDriver(), ElementConstants.TEXT_SEAT_CLASS);
+            Utility.ClickElementByText(Handler.GetCurrentAppiumDriver(), ElementConstants.TEXT_SEAT_CLASS);
 
             if (ElementConstants.TEXT_ECONOMY.equalsIgnoreCase(input)
                     || ElementConstants.TEXT_BUSINESS.equalsIgnoreCase(input)
                     || ElementConstants.TEXT_FIRST_CLASS.equalsIgnoreCase(input)
                     || ElementConstants.TEXT_PREMIUM_ECONOMY.equalsIgnoreCase(input)) {
-                Utility.ClickElementByText(Handler.GetCurrentDriver(), input);
+                Utility.ClickElementByText(Handler.GetCurrentAppiumDriver(), input);
             } else {
                 System.out.println("Seat Class: " + input + " is not available");
             }
 
-            Utility.ClickElementById(Handler.GetCurrentDriver(), ElementConstants.ID_WIDGET_BUTTON_ACCEPT);
+            Utility.ClickElementById(Handler.GetCurrentAppiumDriver(), ElementConstants.ID_WIDGET_BUTTON_ACCEPT);
         } else {
             System.out.println("SetDepartureDate doesn't have date input");
         }
@@ -113,30 +125,30 @@ public class SearchFlights {
 
     @Test
     public void SwapOriginAndDestination() {
-        Utility.ClickElementById(Handler.GetCurrentDriver(), ElementConstants.ID_BUTTON_VIEW_SWAP);
+        Utility.ClickElementById(Handler.GetCurrentAppiumDriver(), ElementConstants.ID_BUTTON_VIEW_SWAP);
     }
 
     @Test
     public void ReturnSwitch() {
-        Utility.ClickElementById(Handler.GetCurrentDriver(), ElementConstants.ID_RETURN_SWITCH);
+        Utility.ClickElementById(Handler.GetCurrentAppiumDriver(), ElementConstants.ID_RETURN_SWITCH);
     }
 
     @Test(dependsOnMethods = {"ReturnSwitch"})
     @Parameters({"date", "month", "year"})
     public void SetReturnDate(@Optional String date, @Optional String month, @Optional String year) {
         if (date != null) {
-            Utility.ClickElementByText(Handler.GetCurrentDriver(), ElementConstants.TEXT_RETURN_DATE);
+            Utility.ClickElementByText(Handler.GetCurrentAppiumDriver(), ElementConstants.TEXT_RETURN_DATE);
 
             try {
-                Utility.ClickElementById(Handler.GetCurrentDriver(), ElementConstants.ID_TEXT_VIEW_TOOLTIP_OK,
+                Utility.ClickElementById(Handler.GetCurrentAppiumDriver(), ElementConstants.ID_TEXT_VIEW_TOOLTIP_OK,
                         ConfigConstants.TOOLTIP_TIMEOUT);
             } catch (Exception e) {
                 Log.Debug("Tooltip is not available");
             }
 
-            Utility.ClickElementByText(Handler.GetCurrentDriver(), date);
+            Utility.ClickElementByText(Handler.GetCurrentAppiumDriver(), date);
 
-            Utility.ClickElementById(Handler.GetCurrentDriver(), ElementConstants.ID_TEXT_VIEW_TOOLTIP_ACTION);
+            Utility.ClickElementById(Handler.GetCurrentAppiumDriver(), ElementConstants.ID_TEXT_VIEW_TOOLTIP_ACTION);
         } else {
             System.out.println("SetReturnDate doesn't have date input");
         }
@@ -144,6 +156,6 @@ public class SearchFlights {
 
     @Test
     public void SearchFlights() {
-        Utility.ClickElementById(Handler.GetCurrentDriver(), ElementConstants.ID_BUTTON_CHOOSE_FLIGHT);
+        Utility.ClickElementById(Handler.GetCurrentAppiumDriver(), ElementConstants.ID_BUTTON_CHOOSE_FLIGHT);
     }
 }

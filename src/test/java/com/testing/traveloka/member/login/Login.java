@@ -27,17 +27,17 @@ public class Login {
             password = ElementConstants.TEST_PASSWORD;
         }
 
-        Utility.SendKeysElementById(Handler.GetCurrentDriver(), ElementConstants.ID_INFORMATION_FIELD_TEXT_EMAIL, email);
+        Utility.SendKeysElementById(Handler.GetCurrentAppiumDriver(), ElementConstants.ID_INFORMATION_FIELD_TEXT_EMAIL, email);
 
-        Utility.SendKeysElementById(Handler.GetCurrentDriver(), ElementConstants.ID_INFORMATION_FIELD_PASSWORD_WIDGET, password);
+        Utility.SendKeysElementById(Handler.GetCurrentAppiumDriver(), ElementConstants.ID_INFORMATION_FIELD_PASSWORD_WIDGET, password);
 
-        Utility.ClickElementById(Handler.GetCurrentDriver(), ElementConstants.ID_LOGIN_BUTTON);
+        Utility.ClickElementById(Handler.GetCurrentAppiumDriver(), ElementConstants.ID_LOGIN_BUTTON);
     }
 
     @Test
     @Parameters({"email", "password"})
     public void LoginWithFacebook(@Optional String email, @Optional String password) {
-        Utility.ClickElementById(Handler.GetCurrentDriver(), ElementConstants.ID_WIDGET_BUTTON_LOGIN_WITH_FACEBOOK);
+        Utility.ClickElementById(Handler.GetCurrentAppiumDriver(), ElementConstants.ID_WIDGET_BUTTON_LOGIN_WITH_FACEBOOK);
 
         if (email == null) {
             email = ElementConstants.TEST_EMAIL;
@@ -47,17 +47,17 @@ public class Login {
             password = ElementConstants.TEST_PASSWORD;
         }
 
-        Utility.SendKeysElementById(Handler.GetCurrentDriver(), ElementConstants.ID_INFORMATION_FIELD_TEXT_EMAIL, email);
+        Utility.SendKeysElementById(Handler.GetCurrentAppiumDriver(), ElementConstants.ID_INFORMATION_FIELD_TEXT_EMAIL, email);
 
-        Utility.SendKeysElementById(Handler.GetCurrentDriver(), ElementConstants.ID_INFORMATION_FIELD_PASSWORD_WIDGET, password);
+        Utility.SendKeysElementById(Handler.GetCurrentAppiumDriver(), ElementConstants.ID_INFORMATION_FIELD_PASSWORD_WIDGET, password);
 
-        Utility.ClickElementById(Handler.GetCurrentDriver(), ElementConstants.ID_LOGIN_BUTTON);
+        Utility.ClickElementById(Handler.GetCurrentAppiumDriver(), ElementConstants.ID_LOGIN_BUTTON);
     }
 
     @Test
     @Parameters({"email", "password"})
     public void LoginWithGoogle(@Optional String email, @Optional String password) {
-        Utility.ClickElementById(Handler.GetCurrentDriver(), ElementConstants.ID_WIDGET_BUTTON_LOGIN_WITH_GOOGLE);
+        Utility.ClickElementById(Handler.GetCurrentAppiumDriver(), ElementConstants.ID_WIDGET_BUTTON_LOGIN_WITH_GOOGLE);
 
         if (email == null) {
             email = ElementConstants.TEST_EMAIL;
@@ -67,10 +67,10 @@ public class Login {
             password = ElementConstants.TEST_PASSWORD;
         }
 
-        Utility.SendKeysElementById(Handler.GetCurrentDriver(), ElementConstants.ID_INFORMATION_FIELD_TEXT_EMAIL, email);
+        Utility.SendKeysElementById(Handler.GetCurrentAppiumDriver(), ElementConstants.ID_INFORMATION_FIELD_TEXT_EMAIL, email);
 
-        Utility.SendKeysElementById(Handler.GetCurrentDriver(), ElementConstants.ID_INFORMATION_FIELD_PASSWORD_WIDGET, password);
+        Utility.SendKeysElementById(Handler.GetCurrentAppiumDriver(), ElementConstants.ID_INFORMATION_FIELD_PASSWORD_WIDGET, password);
 
-        Utility.ClickElementById(Handler.GetCurrentDriver(), ElementConstants.ID_LOGIN_BUTTON);
+        Utility.ClickElementById(Handler.GetCurrentAppiumDriver(), ElementConstants.ID_LOGIN_BUTTON);
     }
 }

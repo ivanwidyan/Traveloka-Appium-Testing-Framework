@@ -12,11 +12,15 @@ import com.testing.constants.CapabilitiesConstants;
 import com.testing.logging.Log;
 import com.testing.traveloka.constants.ConfigConstants;
 import io.appium.java_client.android.AndroidDriver;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.annotations.*;
 
 import java.net.URL;
+import java.util.concurrent.TimeUnit;
 
 public class SetUp {
 
@@ -27,58 +31,79 @@ public class SetUp {
     }
 
     @BeforeTest
-    @Parameters({"devicename", "udid", "ip", "port"})
-    public void SetUp(@Optional String devicename, @Optional String udid,
+    @Parameters({"browser", "devicename", "udid", "ip", "port"})
+    public void SetUp(@Optional String browser, @Optional String devicename, @Optional String udid,
                       @Optional String ip, @Optional String port) throws Exception {
 
         String info = "";
 
-        if (com.testing.Handler.GetCurrentDriver() == null) {
-            if (devicename == null)
-                devicename = ConfigConstants.DEVICE_NAME;
+        Log.Error("Test " + browser);
 
-            DesiredCapabilities capabilities = new DesiredCapabilities();
-            capabilities.setCapability(CapabilitiesConstants.DEVICE_NAME, devicename);
-            capabilities.setCapability(CapabilityType.BROWSER_NAME, ConfigConstants.BROWSER_NAME);
-            capabilities.setCapability(CapabilitiesConstants.PLATFORM_NAME, ConfigConstants.PLATFORM_NAME);
-            capabilities.setCapability(CapabilitiesConstants.APP_PACKAGE, ConfigConstants.APP_PACKAGE);
-            capabilities.setCapability(CapabilitiesConstants.APP_ACTIVITY, ConfigConstants.APP_ACTIVITY);
+        if (browser.equalsIgnoreCase("Android")) {
+            if (com.testing.Handler.GetCurrentAppiumDriver() == null) {
+                if (devicename == null)
+                    devicename = ConfigConstants.DEVICE_NAME;
 
-            if (udid != null)
-                capabilities.setCapability(CapabilitiesConstants.UDID, udid);
+                DesiredCapabilities capabilities = new DesiredCapabilities();
+                capabilities.setCapability(CapabilitiesConstants.DEVICE_NAME, devicename);
+                capabilities.setCapability(CapabilityType.BROWSER_NAME, ConfigConstants.BROWSER_NAME);
+                capabilities.setCapability(CapabilitiesConstants.PLATFORM_NAME, ConfigConstants.PLATFORM_NAME);
+                capabilities.setCapability(CapabilitiesConstants.APP_PACKAGE, ConfigConstants.APP_PACKAGE);
+                capabilities.setCapability(CapabilitiesConstants.APP_ACTIVITY, ConfigConstants.APP_ACTIVITY);
 
-            if (ip == null)
-                ip = ConfigConstants.DEFAULT_IP;
+                if (udid != null)
+                    capabilities.setCapability(CapabilitiesConstants.UDID, udid);
 
-            if (port == null)
-                port = ConfigConstants.DEFAULT_PORT;
+                if (ip == null)
+                    ip = ConfigConstants.DEFAULT_IP;
 
-            String url = "http://" +  ip + ":" + port + "/wd/hub";
-            Handler.SetCurrentDriver(new AndroidDriver(new URL(url), capabilities));
+                if (port == null)
+                    port = ConfigConstants.DEFAULT_PORT;
 
-            info = "SetUp Driver for Device = " + com.testing.Handler.GetCurrentDriver()
-                    .getCapabilities().getCapability(CapabilitiesConstants.DEVICE_NAME);
-            Log.Debug(info);
+                String url = "http://" + ip + ":" + port + "/wd/hub";
+                Handler.SetCurrentAppiumDriver(new AndroidDriver(new URL(url), capabilities));
 
-        } else {
-            info = "Duplicate driver in the same thread";
-            Log.Error(info);
+                info = "SetUp Appium Driver for Device = " + com.testing.Handler.GetCurrentAppiumDriver()
+                        .getCapabilities().getCapability(CapabilitiesConstants.DEVICE_NAME);
+                Log.Debug(info);
+
+            } else {
+                info = "Duplicate Appium driver in the same thread";
+                Log.Error(info);
+            }
+        } else if (browser.equalsIgnoreCase("Firefox")) {
+            System.setProperty("webdriver.gecko.driver", "/Users/ivanwidyan/Desktop/Ivan-Widyan/Tools/GeckoDriver/geckodriver");
+            Handler.SetCurrentWebDriver(new FirefoxDriver());
+
+            Handler.GetCurrentWebDriver().manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+
+            String url = "https://www.traveloka.com/en";
+
+            Handler.GetCurrentWebDriver().get(url);
         }
     }
 
     @AfterTest
     public void AfterTest() {
-        String info = "Quit Driver for Device = " + com.testing.Handler.GetCurrentDriver()
-                .getCapabilities().getCapability(CapabilitiesConstants.DEVICE_NAME);
-        Log.Debug(info);
-        Handler.GetCurrentDriver().quit();
-        Handler.SetCurrentDriver(null);
+        if (Handler.GetCurrentAppiumDriver() != null) {
+            String info = "Quit Driver for Device = " + com.testing.Handler.GetCurrentAppiumDriver()
+                    .getCapabilities().getCapability(CapabilitiesConstants.DEVICE_NAME);
+            Log.Debug(info);
+            Handler.GetCurrentAppiumDriver().quit();
+        }
+
+        if (Handler.GetCurrentWebDriver() != null) {
+            String info = "Quit Driver for Web Driver = " + com.testing.Handler.GetCurrentWebDriver();
+            Log.Debug(info);
+            Handler.GetCurrentWebDriver().quit();
+        }
     }
 
     @AfterSuite
     public void AfterSuite() throws Exception {
         String info = "Clear Driver Hashmap";
         Log.Debug(info);
-        Handler.ClearDriverHashmap();
+        Handler.ClearAppiumDriverHashmap();
+        Handler.ClearWebDriverHashmap();
     }
 }

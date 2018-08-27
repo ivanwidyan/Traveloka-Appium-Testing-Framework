@@ -16,11 +16,11 @@ public class Member {
 
     @Test
     public void Login() {
-        Utility.ClickElementById(Handler.GetCurrentDriver(), ElementConstants.ID_LOGIN_BUTTON);
+        Utility.ClickElementById(Handler.GetCurrentAppiumDriver(), ElementConstants.ID_LOGIN_BUTTON);
     }
 
     @Test
     public void Register() {
-        Utility.ClickElementById(Handler.GetCurrentDriver(), ElementConstants.ID_REGISTER_BUTTON);
+        Utility.ClickElementById(Handler.GetCurrentAppiumDriver(), ElementConstants.ID_REGISTER_BUTTON);
     }
 }

@@ -25,21 +25,21 @@ public class SplashScreen {
         else
             countryLanguage = country + "(" + language + ")";
 
-        Utility.ClickElementByText(Handler.GetCurrentDriver(), countryLanguage); // -> language is already set
+        Utility.ClickElementByText(Handler.GetCurrentAppiumDriver(), countryLanguage); // -> language is already set
 
-        Utility.ClickElementByText(Handler.GetCurrentDriver(), ElementConstants.TEXT_CONTINUE);
+        Utility.ClickElementByText(Handler.GetCurrentAppiumDriver(), ElementConstants.TEXT_CONTINUE);
     }
 
     @Test
     public void SkipSplashScreen () {
-        Utility.ClickElementByText(Handler.GetCurrentDriver(), ElementConstants.TEXT_SKIP);
+        Utility.ClickElementByText(Handler.GetCurrentAppiumDriver(), ElementConstants.TEXT_SKIP);
 
-        Utility.ClickElementById(Handler.GetCurrentDriver(), ElementConstants.ID_BUTTON_START_SEARCH);
+        Utility.ClickElementById(Handler.GetCurrentAppiumDriver(), ElementConstants.ID_BUTTON_START_SEARCH);
 
-        Utility.ClickElementById(Handler.GetCurrentDriver(), ElementConstants.ID_WIDGET_BUTTON_BLUE);
+        Utility.ClickElementById(Handler.GetCurrentAppiumDriver(), ElementConstants.ID_WIDGET_BUTTON_BLUE);
 
         try {
-            Utility.ClickElementById(Handler.GetCurrentDriver(), ElementConstants.ID_TEXT_VIEW_TOOLTIP_OK,
+            Utility.ClickElementById(Handler.GetCurrentAppiumDriver(), ElementConstants.ID_TEXT_VIEW_TOOLTIP_OK,
                     ConfigConstants.TOOLTIP_TIMEOUT);
         } catch (Exception e) {
             Log.Debug("Tooltip is not available");

@@ -8,7 +8,7 @@ framework for [Selenium](https://github.com/SeleniumHQ/selenium) software-testin
 testing framework to create easy automate testing for Traveloka Android Application which written in Java & XML.
 
 This testing framework is applying the automation build using [Maven](https://maven.apache.org/) and [Jenkins](https://jenkins.io/) 
-with GitHub to help managing the deployment process so continuous integration for testing can be achieved.
+with GitHub to help manage the deployment process so continuous integration for testing can be achieved.
 
 ### Development Technology
 Included in `pom.xml` for maven dependency
@@ -33,7 +33,7 @@ Included in `pom.xml` for maven dependency
 * Tap By Coordinates
 * Swipe Vertically, Horizontally, & By Coordinates
 
-### Suites Capabilites:
+### Suites Capabilities:
 * Test Suites (Collection of Test Cases)
 * Multiple Test Suites
 * Parallel Test
@@ -52,7 +52,7 @@ Included in `pom.xml` for maven dependency
 * Click Log In & Register
 
 **Login:**
-* Login with Email, Facebook, & Google
+* Log in with Email, Facebook, & Google
 
 **Search Flights:**
 * Set Origin, Destination, Departure Date, Passenger, Seat Class, & Return Date
@@ -76,7 +76,7 @@ Included in `pom.xml` for maven dependency
 * Selenium, Appium, TestNG Automation - Test FL_PR_001
 [![Example_FL_PR_001](https://user-images.githubusercontent.com/12959761/44569569-0cbdae00-a7a5-11e8-9369-e6dde61e0fac.png)](https://youtu.be/vVNFc6-9pRs)
 
-* Continuous Integration using Maven & Jenkins using GitHub - Test FL_PR_002
+* Continuous Integration using Maven & Jenkins with GitHub - Test FL_PR_002 Example_FL_PR_002
 [![Example_FL_PR_002](https://user-images.githubusercontent.com/12959761/44630067-5b746f00-a982-11e8-8fde-02aa9cd91a85.png)](https://youtu.be/6Zx3cgFN-74)
 
 * Parallel Execution and Multithreading - Test FL_PR_001 & FL_PR_002
