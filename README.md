@@ -25,10 +25,13 @@ Included in `pom.xml` for maven dependency
 * Android
 
 ### API Features
-* Wait Get Element By ID, Name, or ClassName
-* Wait for Click Element By ID, Name, or ClassName
-* Wait to Send Keys Element By ID, Name, or ClassName
-* Swipe Vertically, Horizontally, or By Coordinates
+* Wait Get Element By ID, Name, & ClassName
+* Wait for Click Element By ID, Name, & ClassName
+* Wait to Send Keys Element By ID, Name, & ClassName
+* Wait to Get Elements By ID & ClassName
+* Click Elements By ID Using Index
+* Tap By Coordinates
+* Swipe Vertically, Horizontally, & By Coordinates
 
 ### Suites Capabilites:
 * Test Suites (Collection of Test Cases)
@@ -43,45 +46,41 @@ Included in `pom.xml` for maven dependency
 
 **Home:**
 * Navigate to Flights
-* Navigate to Log In or Register
+* Navigate to Log In and Register
 
 **Member:**
-* Click Log In and Register
+* Click Log In & Register
 
 **Login:**
-* Login with Email, Facebook, or Google
+* Login with Email, Facebook, & Google
 
 **Search Flights:**
-* Set Origin
-* Set Destination
-* Set Departure Date
-* Set Passenger
-* Set Seat Class
+* Set Origin, Destination, Departure Date, Passenger, Seat Class, & Return Date
 * Swap Origin & Destination
 * Return Switch
-* Set Return Date
 * Search Flights
 
 **Select Flight:**
 * Sort By
-* Print Flight
-* Select Flight
+* Print & Select Flight
 
 **Booking Summary:**
 * Select
 
 **Fill in Details - Book:**
-* Fill in Contact Details
-* Traveler Details
+* Fill in Contact & Traveler Details
 * Continue
 
 ### Examples
 **Flight Purchase:**
-* Selenium, Appium, TestNG - Automate Test FL_PR_001
+* Selenium, Appium, TestNG Automation - Test FL_PR_001
 [![Example_FL_PR_001](https://user-images.githubusercontent.com/12959761/44569569-0cbdae00-a7a5-11e8-9369-e6dde61e0fac.png)](https://youtu.be/vVNFc6-9pRs)
 
-* Continuous Integration using Maven & Jenkins using GitHub
+* Continuous Integration using Maven & Jenkins using GitHub - Test FL_PR_002
 [![Example_FL_PR_002](https://user-images.githubusercontent.com/12959761/44630067-5b746f00-a982-11e8-8fde-02aa9cd91a85.png)](https://youtu.be/6Zx3cgFN-74)
+
+* Parallel Execution and Multithreading - Test FL_PR_001 & FL_PR_002
+[![Parallel_Test](https://user-images.githubusercontent.com/12959761/44637859-e33b9700-a9dd-11e8-8505-c3403d626536.png)](https://youtu.be/fSANbFw6QFY)
 
 ### Authors
 Ivan Widyan - Creator & Developer (ivanwidyan@yahoo.com)
