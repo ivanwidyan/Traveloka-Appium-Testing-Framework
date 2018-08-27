@@ -1,3 +1,10 @@
+/*
+ * Copyright (c) 2018. Ivan Widyan - All Rights Reserved
+ * Unauthorized copying of this file, via any medium is strictly prohibited
+ * Proprietary and confidential
+ * Email: ivanwidyan@yahoo.com
+ */
+
 package com.testing.traveloka.flights.fillindetails;
 
 import com.testing.Handler;
@@ -26,7 +33,7 @@ public class Book {
 
         Utility.GetElementByText(Handler.GetCurrentDriver(), ElementConstants.TEXT_CONTACT_DETAILS);
 
-        Utility.SwipeVerticalByCoordinate(Handler.GetCurrentDriver(), CoordinateConstants.FILL_IN_DETAILS_START_Y
+        Utility.SwipeVerticalByCoordinates(Handler.GetCurrentDriver(), CoordinateConstants.FILL_IN_DETAILS_START_Y
                 , CoordinateConstants.FILL_IN_DETAILS_END_Y, CoordinateConstants.FILL_IN_DETAILS_ANCHOR_X);
 
         Utility.ClickElementByText(Handler.GetCurrentDriver(), ElementConstants.TEXT_FILL_IN_CONTACT_DETAILS);
@@ -58,7 +65,7 @@ public class Book {
 
         Utility.GetElementByText(Handler.GetCurrentDriver(), ElementConstants.TEXT_CONTACT_DETAILS);
 
-        Utility.SwipeVerticalByCoordinate(Handler.GetCurrentDriver(), CoordinateConstants.FILL_IN_DETAILS_START_Y
+        Utility.SwipeVerticalByCoordinates(Handler.GetCurrentDriver(), CoordinateConstants.FILL_IN_DETAILS_START_Y
                 , CoordinateConstants.FILL_IN_DETAILS_END_Y, CoordinateConstants.FILL_IN_DETAILS_ANCHOR_X);
 
         Utility.ClickElementByText(Handler.GetCurrentDriver(), traveler);

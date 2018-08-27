@@ -1,7 +1,15 @@
+/*
+ * Copyright (c) 2018. Ivan Widyan - All Rights Reserved
+ * Unauthorized copying of this file, via any medium is strictly prohibited
+ * Proprietary and confidential
+ * Email: ivanwidyan@yahoo.com
+ */
+
 package com.testing.traveloka.flights;
 
 import com.testing.Handler;
 import com.testing.Utility;
+import com.testing.logging.Log;
 import com.testing.traveloka.constants.ConfigConstants;
 import com.testing.traveloka.constants.ElementConstants;
 import org.openqa.selenium.WebElement;
@@ -59,8 +67,11 @@ public class SearchFlights {
             Utility.ClickElementByText(Handler.GetCurrentDriver(), ElementConstants.TEXT_DEPARTURE_DATE);
 
             try {
-                Utility.ClickElementById(Handler.GetCurrentDriver(), ElementConstants.ID_TEXT_VIEW_TOOLTIP_OK, ConfigConstants.TIMEOUT_FALSE);
-            } catch (Exception e) {}
+                Utility.ClickElementById(Handler.GetCurrentDriver(), ElementConstants.ID_TEXT_VIEW_TOOLTIP_OK,
+                        ConfigConstants.TOOLTIP_TIMEOUT);
+            } catch (Exception e) {
+                Log.Debug("Tooltip is not available");
+            }
 
             Utility.ClickElementByText(Handler.GetCurrentDriver(), date);
         } else {
@@ -68,11 +79,11 @@ public class SearchFlights {
         }
     }
 
-    // TODO: Create swipe function with sensitivity
     @Test (enabled = false)
     @Parameters({"adult", "child", "infant"})
     public void SetPassenger(@Optional String adult, @Optional String child, @Optional String infant) {
         if (adult != null || child != null || infant != null) {
+            // TODO: Create swipe function with sensitivity
             // Here are the code to swipe based on the input
         } else {
             System.out.println("SetDepartureDate doesn't have date input");
@@ -117,8 +128,11 @@ public class SearchFlights {
             Utility.ClickElementByText(Handler.GetCurrentDriver(), ElementConstants.TEXT_RETURN_DATE);
 
             try {
-                Utility.ClickElementById(Handler.GetCurrentDriver(), ElementConstants.ID_TEXT_VIEW_TOOLTIP_OK, ConfigConstants.TIMEOUT_FALSE);
-            } catch (Exception e) {}
+                Utility.ClickElementById(Handler.GetCurrentDriver(), ElementConstants.ID_TEXT_VIEW_TOOLTIP_OK,
+                        ConfigConstants.TOOLTIP_TIMEOUT);
+            } catch (Exception e) {
+                Log.Debug("Tooltip is not available");
+            }
 
             Utility.ClickElementByText(Handler.GetCurrentDriver(), date);
 

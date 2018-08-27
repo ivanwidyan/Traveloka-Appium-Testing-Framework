@@ -1,3 +1,10 @@
+/*
+ * Copyright (c) 2018. Ivan Widyan - All Rights Reserved
+ * Unauthorized copying of this file, via any medium is strictly prohibited
+ * Proprietary and confidential
+ * Email: ivanwidyan@yahoo.com
+ */
+
 package com.testing.traveloka.constants;
 
 public class ConfigConstants {
@@ -24,4 +31,6 @@ public class ConfigConstants {
     public final static String DEFAULT_MOBILENUMBER = "82140617776";
     public final static String DEFAULT_EMAIL = "ivanwidyan@ivanwidyan.com";
     public final static String DEFAULT_TITLE = "Mr.";
+
+    public final static long TOOLTIP_TIMEOUT = 30;
 }
