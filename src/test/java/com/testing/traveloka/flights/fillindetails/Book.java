@@ -9,10 +9,14 @@ package com.testing.traveloka.flights.fillindetails;
 
 import com.testing.Handler;
 import com.testing.Utility;
-import com.testing.traveloka.constants.ConfigConstants;
-import com.testing.traveloka.constants.CoordinateConstants;
-import com.testing.traveloka.constants.ElementConstants;
+import com.testing.constants.AndroidElementConstants;
+import com.testing.constants.ConfigConstants;
+import com.testing.constants.Constants;
+import com.testing.traveloka.constants.TravelokaAndroidElementConstants;
+import com.testing.traveloka.constants.TravelokaConfigConstants;
+import com.testing.traveloka.constants.TravelokaCoordinateConstants;
 import org.openqa.selenium.WebElement;
+import org.testng.SkipException;
 import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
@@ -27,67 +31,80 @@ public class Book {
     private final static int EMAIL_TEXTBOX_INDEX = 3;
 
     @Test
-    @Parameters({"fullname", "countrycode", "mobilenumber", "email"})
-    public void FillInContactDetails (@Optional String fullname, @Optional String countrycode,
+    @Parameters({"platform", "fullname", "countrycode", "mobilenumber", "email"})
+    public void FillInContactDetails (String platform, @Optional String fullname, @Optional String countrycode,
                                       @Optional String mobilenumber, @Optional String email) {
 
-        Utility.GetElementByText(Handler.GetCurrentDriver(), ElementConstants.TEXT_CONTACT_DETAILS);
+        if (ConfigConstants.PLATFORM_ANDROID.equalsIgnoreCase(platform)) {
+            Utility.GetElementByXPath(Handler.GetCurrentAppiumDriver(), AndroidElementConstants.CLASS_ANDROID_WIDGET_TEXTVIEW, AndroidElementConstants.PARAM_TEXT, TravelokaAndroidElementConstants.TEXT_CONTACT_DETAILS);
 
-        Utility.SwipeVerticalByCoordinates(Handler.GetCurrentDriver(), CoordinateConstants.FILL_IN_DETAILS_START_Y
-                , CoordinateConstants.FILL_IN_DETAILS_END_Y, CoordinateConstants.FILL_IN_DETAILS_ANCHOR_X);
+            Utility.SwipeVerticalByCoordinates(Handler.GetCurrentAppiumDriver(), TravelokaCoordinateConstants.FILL_IN_DETAILS_START_Y
+                    , TravelokaCoordinateConstants.FILL_IN_DETAILS_END_Y, TravelokaCoordinateConstants.FILL_IN_DETAILS_ANCHOR_X);
 
-        Utility.ClickElementByText(Handler.GetCurrentDriver(), ElementConstants.TEXT_FILL_IN_CONTACT_DETAILS);
+            Utility.ClickElementByXPath(Handler.GetCurrentAppiumDriver(), AndroidElementConstants.CLASS_ANDROID_WIDGET_TEXTVIEW, AndroidElementConstants.PARAM_TEXT, TravelokaAndroidElementConstants.TEXT_FILL_IN_CONTACT_DETAILS);
 
-        List<WebElement> textBox = Utility.GetElementsByClass(Handler.GetCurrentDriver(), ElementConstants.CLASS_ANDROID_WIDGET_EDITTEXT);
+            List<WebElement> textBox = Utility.GetElementsByClass(Handler.GetCurrentAppiumDriver(), TravelokaAndroidElementConstants.CLASS_ANDROID_WIDGET_EDITTEXT);
 
-        if (fullname == null)
-            fullname = ConfigConstants.DEFAULT_FULLNAME;
-        textBox.get(FULLNAME_TEXTBOX_INDEX).sendKeys(fullname);
+            if (fullname == null)
+                fullname = TravelokaConfigConstants.DEFAULT_FULLNAME;
+            textBox.get(FULLNAME_TEXTBOX_INDEX).sendKeys(fullname);
 
-        if (countrycode != null)
-            textBox.get(COUNTRYCODE_TEXTBOX_INDEX).sendKeys(countrycode);
+            if (countrycode != null)
+                textBox.get(COUNTRYCODE_TEXTBOX_INDEX).sendKeys(countrycode);
 
-        if (mobilenumber == null)
-            mobilenumber = ConfigConstants.DEFAULT_MOBILENUMBER;
-        textBox.get(MOBILENUMBER_TEXTBOX_INDEX).sendKeys(mobilenumber);
+            if (mobilenumber == null)
+                mobilenumber = TravelokaConfigConstants.DEFAULT_MOBILENUMBER;
+            textBox.get(MOBILENUMBER_TEXTBOX_INDEX).sendKeys(mobilenumber);
 
-        if (email == null)
-            email = ConfigConstants.DEFAULT_EMAIL;
-        String emailEnter = email + ConfigConstants.ENTER;
-        textBox.get(EMAIL_TEXTBOX_INDEX).sendKeys(emailEnter);
+            if (email == null)
+                email = TravelokaConfigConstants.DEFAULT_EMAIL;
+            String emailEnter = email + Constants.ENTER;
+            textBox.get(EMAIL_TEXTBOX_INDEX).sendKeys(emailEnter);
 
-        Utility.ClickElementById(Handler.GetCurrentDriver(), ElementConstants.ID_BUTTON_SAVE);
+            Utility.ClickElementById(Handler.GetCurrentAppiumDriver(), TravelokaAndroidElementConstants.ID_BUTTON_SAVE);
+        } else {
+            throw new SkipException("This test only for Android!");
+        }
     }
 
     @Test
-    @Parameters({"traveler", "title", "fullname"})
-    public void TravelerDetails (String traveler, @Optional String title, @Optional String fullname) {
+    @Parameters({"platform", "traveler", "title", "fullname"})
+    public void TravelerDetails (String platform, String traveler, @Optional String title, @Optional String fullname) {
+        if (ConfigConstants.PLATFORM_ANDROID.equalsIgnoreCase(platform)) {
+            Utility.GetElementByXPath(Handler.GetCurrentAppiumDriver(), AndroidElementConstants.CLASS_ANDROID_WIDGET_TEXTVIEW, AndroidElementConstants.PARAM_TEXT, TravelokaAndroidElementConstants.TEXT_CONTACT_DETAILS);
 
-        Utility.GetElementByText(Handler.GetCurrentDriver(), ElementConstants.TEXT_CONTACT_DETAILS);
+            Utility.SwipeVerticalByCoordinates(Handler.GetCurrentAppiumDriver(), TravelokaCoordinateConstants.FILL_IN_DETAILS_START_Y
+                    , TravelokaCoordinateConstants.FILL_IN_DETAILS_END_Y, TravelokaCoordinateConstants.FILL_IN_DETAILS_ANCHOR_X);
 
-        Utility.SwipeVerticalByCoordinates(Handler.GetCurrentDriver(), CoordinateConstants.FILL_IN_DETAILS_START_Y
-                , CoordinateConstants.FILL_IN_DETAILS_END_Y, CoordinateConstants.FILL_IN_DETAILS_ANCHOR_X);
+            Utility.ClickElementByXPath(Handler.GetCurrentAppiumDriver(), AndroidElementConstants.CLASS_ANDROID_WIDGET_TEXTVIEW, AndroidElementConstants.PARAM_TEXT, traveler);
 
-        Utility.ClickElementByText(Handler.GetCurrentDriver(), traveler);
+            Utility.ClickElementByClassName(Handler.GetCurrentAppiumDriver(), TravelokaAndroidElementConstants.CLASS_ANDROID_WIDGET_SPINNER);
 
-        Utility.ClickElementByClassName(Handler.GetCurrentDriver(), ElementConstants.CLASS_ANDROID_WIDGET_SPINNER);
+            if (title == null) {
+                title = TravelokaConfigConstants.DEFAULT_TITLE;
+            }
+            Utility.ClickElementByXPath(Handler.GetCurrentAppiumDriver(), AndroidElementConstants.CLASS_ANDROID_WIDGET_TEXTVIEW, AndroidElementConstants.PARAM_TEXT, title);
 
-        if (title == null) {
-            title = ConfigConstants.DEFAULT_TITLE;
+            if (fullname == null) {
+                fullname = TravelokaConfigConstants.DEFAULT_FULLNAME;
+            }
+            Utility.SendKeysElementByClassName(Handler.GetCurrentAppiumDriver()
+                    , TravelokaAndroidElementConstants.CLASS_ANDROID_WIDGET_EDITTEXT, fullname);
+
+            Utility.ClickElementById(Handler.GetCurrentAppiumDriver(), TravelokaAndroidElementConstants.ID_BUTTON_SAVE);
+        } else {
+            throw new SkipException("This test only for Android!");
         }
-        Utility.ClickElementByText(Handler.GetCurrentDriver(), title);
-
-        if (fullname == null) {
-            fullname = ConfigConstants.DEFAULT_FULLNAME;
-        }
-        Utility.SendKeysElementByClassName(Handler.GetCurrentDriver()
-                , ElementConstants.CLASS_ANDROID_WIDGET_EDITTEXT, fullname);
-
-        Utility.ClickElementById(Handler.GetCurrentDriver(), ElementConstants.ID_BUTTON_SAVE);
     }
 
     @Test(dependsOnMethods = {"FillInContactDetails", "TravelerDetails"})
-    public void Continue () {
-        Utility.ClickElementById(Handler.GetCurrentDriver(), ElementConstants.ID_TEXT_VIEW_SEE_BELOW_VIEW);
+    @Parameters({"platform"})
+    public void Continue (String platform) {
+        if (ConfigConstants.PLATFORM_ANDROID.equalsIgnoreCase(platform)) {
+            Utility.ClickElementById(Handler.GetCurrentAppiumDriver(), TravelokaAndroidElementConstants.ID_TEXT_VIEW_SEE_BELOW_VIEW);
+
+        } else {
+            throw new SkipException("This test only for Android!");
+        }
     }
 }

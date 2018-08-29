@@ -9,40 +9,58 @@ package com.testing.traveloka;
 
 import com.testing.Handler;
 import com.testing.Utility;
+import com.testing.constants.AndroidElementConstants;
+import com.testing.constants.ConfigConstants;
 import com.testing.logging.Log;
-import com.testing.traveloka.constants.ConfigConstants;
-import com.testing.traveloka.constants.ElementConstants;
+import com.testing.traveloka.constants.TravelokaConfigConstants;
+import com.testing.traveloka.constants.TravelokaAndroidElementConstants;
+import org.testng.SkipException;
 import org.testng.annotations.*;
 
 public class SplashScreen {
 
     @Test
-    @Parameters({"country", "language"})
-    public void ChooseCountryLanguage (@Optional String country, @Optional String language) {
-        String countryLanguage;
-        if (country == null || language == null)
-            countryLanguage = ElementConstants.TEXT_INDONESIA_ENGLISH;
-        else
-            countryLanguage = country + "(" + language + ")";
+    @Parameters({"platform", "country", "language"})
+    public void ChooseCountryLanguage (String platform, @Optional String country, @Optional String language) {
+        if (ConfigConstants.PLATFORM_ANDROID.equalsIgnoreCase(platform)) {
+            String countryLanguage;
+            if (country == null || language == null)
+                countryLanguage = TravelokaAndroidElementConstants.TEXT_INDONESIA_ENGLISH;
+            else
+                countryLanguage = country + "(" + language + ")";
 
-        Utility.ClickElementByText(Handler.GetCurrentDriver(), countryLanguage); // -> language is already set
+            Utility.ClickElementByXPath(Handler.GetCurrentAppiumDriver(),
+                    AndroidElementConstants.CLASS_ANDROID_WIDGET_TEXTVIEW,
+                    AndroidElementConstants.PARAM_TEXT, countryLanguage); // -> language is already set
 
-        Utility.ClickElementByText(Handler.GetCurrentDriver(), ElementConstants.TEXT_CONTINUE);
+            Utility.ClickElementByXPath(Handler.GetCurrentAppiumDriver(),
+                    AndroidElementConstants.CLASS_ANDROID_WIDGET_TEXTVIEW,
+                    AndroidElementConstants.PARAM_TEXT, TravelokaAndroidElementConstants.TEXT_CONTINUE);
+        } else {
+            throw new SkipException("This test only for Android!");
+        }
     }
 
     @Test
-    public void SkipSplashScreen () {
-        Utility.ClickElementByText(Handler.GetCurrentDriver(), ElementConstants.TEXT_SKIP);
+    @Parameters({"platform"})
+    public void SkipSplashScreen (String platform) {
+        if (ConfigConstants.PLATFORM_ANDROID.equalsIgnoreCase(platform)) {
+            Utility.ClickElementByXPath(Handler.GetCurrentAppiumDriver(),
+                    AndroidElementConstants.CLASS_ANDROID_WIDGET_TEXTVIEW,
+                    AndroidElementConstants.PARAM_TEXT, TravelokaAndroidElementConstants.TEXT_SKIP);
 
-        Utility.ClickElementById(Handler.GetCurrentDriver(), ElementConstants.ID_BUTTON_START_SEARCH);
+            Utility.ClickElementById(Handler.GetCurrentAppiumDriver(), TravelokaAndroidElementConstants.ID_BUTTON_START_SEARCH);
 
-        Utility.ClickElementById(Handler.GetCurrentDriver(), ElementConstants.ID_WIDGET_BUTTON_BLUE);
+            Utility.ClickElementById(Handler.GetCurrentAppiumDriver(), TravelokaAndroidElementConstants.ID_WIDGET_BUTTON_BLUE);
 
-        try {
-            Utility.ClickElementById(Handler.GetCurrentDriver(), ElementConstants.ID_TEXT_VIEW_TOOLTIP_OK,
-                    ConfigConstants.TOOLTIP_TIMEOUT);
-        } catch (Exception e) {
-            Log.Debug("Tooltip is not available");
+            try {
+                Utility.ClickElementById(Handler.GetCurrentAppiumDriver(), TravelokaAndroidElementConstants.ID_TEXT_VIEW_TOOLTIP_OK,
+                        TravelokaConfigConstants.TOOLTIP_TIMEOUT);
+            } catch (Exception e) {
+                Log.Debug("Tooltip is not available");
+            }
+        } else {
+            throw new SkipException("This test only for Android!");
         }
     }
 }

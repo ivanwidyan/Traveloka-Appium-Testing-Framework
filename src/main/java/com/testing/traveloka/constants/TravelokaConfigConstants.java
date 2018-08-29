@@ -7,7 +7,7 @@
 
 package com.testing.traveloka.constants;
 
-public class ConfigConstants {
+public class TravelokaConfigConstants {
     // Capabilities Set up
     public final static String DEVICE_NAME = "emulator";
     public final static String BROWSER_NAME = "Android";
@@ -16,16 +16,6 @@ public class ConfigConstants {
     public final static String APP_ACTIVITY = "com.traveloka.android.appentry.splash.SplashActivity";
     public final static String DEFAULT_IP = "127.0.0.1";
     public final static String DEFAULT_PORT = "4723";
-
-    public final static String ELEMENT_TYPE_ID = "id";
-    public final static String ELEMENT_TYPE_TEXT_TEXT_VIEW = "text_text_view";
-    public final static String ELEMENT_TYPE_TEXT_BUTTON = "text_button";
-    public final static String ELEMENT_TYPE_CLASSNAME = "classname";
-    public final static boolean TIMEOUT_FALSE = false;
-    public final static String ENTER = "\n";
-
-    public final static int FIRST_INDEX = 0;
-    public final static int SECOND_INDEX = 1;
 
     public final static String DEFAULT_FULLNAME = "Ivan Widyan";
     public final static String DEFAULT_MOBILENUMBER = "82140617776";

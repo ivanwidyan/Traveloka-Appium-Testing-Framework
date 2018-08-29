@@ -9,18 +9,31 @@ package com.testing.traveloka.member;
 
 import com.testing.Handler;
 import com.testing.Utility;
-import com.testing.traveloka.constants.ElementConstants;
+import com.testing.constants.ConfigConstants;
+import com.testing.traveloka.constants.TravelokaAndroidElementConstants;
+import org.testng.SkipException;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 public class Member {
 
     @Test
-    public void Login() {
-        Utility.ClickElementById(Handler.GetCurrentDriver(), ElementConstants.ID_LOGIN_BUTTON);
+    @Parameters({"platform"})
+    public void Login(String platform) {
+        if (ConfigConstants.PLATFORM_ANDROID.equalsIgnoreCase(platform)) {
+            Utility.ClickElementById(Handler.GetCurrentAppiumDriver(), TravelokaAndroidElementConstants.ID_LOGIN_BUTTON);
+        } else {
+            throw new SkipException("This test only for Android!");
+        }
     }
 
     @Test
-    public void Register() {
-        Utility.ClickElementById(Handler.GetCurrentDriver(), ElementConstants.ID_REGISTER_BUTTON);
+    @Parameters({"platform"})
+    public void Register(String platform) {
+        if (ConfigConstants.PLATFORM_ANDROID.equalsIgnoreCase(platform)) {
+            Utility.ClickElementById(Handler.GetCurrentAppiumDriver(), TravelokaAndroidElementConstants.ID_REGISTER_BUTTON);
+        } else {
+            throw new SkipException("This test only for Android!");
+        }
     }
 }

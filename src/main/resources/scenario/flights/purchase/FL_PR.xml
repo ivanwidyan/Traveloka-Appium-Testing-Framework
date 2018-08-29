@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Flight Purchase Test" thread-count="1" parallel="false">
-    <test enabled="false" name="FL_PR_001 Purchase Economy Flight From HLP (Jakarta) to Yogyakarta (Swap)
+<suite name="Flight Purchase Test" thread-count="2" parallel="tests">
+    <test enabled="true" name="FL_PR_001 Purchase Economy Flight From HLP (Jakarta) to Yogyakarta (Swap)
                 AND search and Sort By Earliest Departure, pick first row, then skip Booking Summary
                 AND Fill in Contact Details and TravelerDetails, then continue">
 
+        <parameter name="platform" value="web"/>
+        
         <classes>
             <class name="com.testing.traveloka.SetUp"/>
             <class name="com.testing.traveloka.SplashScreen" />
@@ -48,9 +50,11 @@
         </classes>
     </test>
 
-    <test enabled="true" name="FL_PR_002 Purchase Business Flight From Surabaya to Bali, set Departure Date 28
+    <test enabled="false" name="FL_PR_002 Purchase Business Flight From Surabaya to Bali, set Departure Date 28
                 AND search and pick first row, then skip Booking Summary
                 AND Fill in Contact Details and TravelerDetails, then continue">
+
+        <parameter name="platform" value="android"/>
 
         <classes>
             <class name="com.testing.traveloka.SetUp"/>
