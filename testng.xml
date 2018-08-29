@@ -6,7 +6,7 @@
         <listener class-name = "com.testing.logging.CustomListener" />
     </listeners>
 
-    <parameter name = "browser" value="Firefox"/>
+    <!--<parameter name = "platform" value="web"/>-->
 
     <suite-files>
         <!--<suite-file path="src/main/resources/scenario/flights/purchase/FL_PR (Multithread).xml"/>-->

@@ -14,8 +14,8 @@ import org.testng.annotations.Test;
 public class Register {
 
     @Test
-    @Parameters({"input"})
-    public void SelectFlight(@Optional String input) {
+    @Parameters({"platform", "input"})
+    public void SelectFlight(String platform, @Optional String input) {
 
     }
 }

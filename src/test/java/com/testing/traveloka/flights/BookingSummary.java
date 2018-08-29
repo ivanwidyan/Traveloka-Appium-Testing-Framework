@@ -9,7 +9,11 @@ package com.testing.traveloka.flights;
 
 import com.testing.Handler;
 import com.testing.Utility;
-import com.testing.traveloka.constants.ElementConstants;
+import com.testing.constants.AndroidElementConstants;
+import com.testing.constants.ConfigConstants;
+import com.testing.traveloka.constants.TravelokaAndroidElementConstants;
+import org.testng.SkipException;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 public class BookingSummary {
@@ -25,9 +29,16 @@ public class BookingSummary {
     }
 
     @Test
-    public void Select() {
-        Utility.GetElementByText(Handler.GetCurrentAppiumDriver(), ElementConstants.TEXT_FLIGHT);
+    @Parameters({"platform"})
+    public void Select(String platform) {
+        if (ConfigConstants.PLATFORM_ANDROID.equalsIgnoreCase(platform)) {
+            Utility.GetElementByXPath(Handler.GetCurrentAppiumDriver(),
+                    AndroidElementConstants.CLASS_ANDROID_WIDGET_TEXTVIEW,
+                    AndroidElementConstants.PARAM_TEXT, TravelokaAndroidElementConstants.TEXT_FLIGHT);
 
-        Utility.ClickElementById(Handler.GetCurrentAppiumDriver(), ElementConstants.ID_BUTTON_SELECT);
+            Utility.ClickElementById(Handler.GetCurrentAppiumDriver(), TravelokaAndroidElementConstants.ID_BUTTON_SELECT);
+        } else {
+            throw new SkipException("This test only for Android!");
+        }
     }
 }

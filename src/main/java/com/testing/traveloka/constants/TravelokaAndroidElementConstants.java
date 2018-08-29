@@ -7,7 +7,7 @@
 
 package com.testing.traveloka.constants;
 
-public class ElementConstants {
+public class TravelokaAndroidElementConstants {
     // Testing Account
     public final static String TEST_EMAIL = "travelokaappiumtest@gmail.com";
     public final static String TEST_PASSWORD = "travelokaappiumtest123";
@@ -24,8 +24,6 @@ public class ElementConstants {
     public final static String LANGUAGE_ENGLISH = "English";
     public final static String TEXT_INDONESIA_INDONESIA = "Indonesia (Indonesia)";
     public final static String TEXT_INDONESIA_ENGLISH = "Indonesia (English)";
-
-    // Member Text
 
     // Home Text
     public final static String TEXT_FLIGHTS = "Flights";

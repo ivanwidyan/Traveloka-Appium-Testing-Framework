@@ -7,13 +7,17 @@
 
 package com.testing;
 
+import com.testing.constants.ConfigConstants;
+import com.testing.constants.Constants;
+import com.testing.constants.ElementConstants;
 import com.testing.logging.Log;
-import com.testing.traveloka.constants.ConfigConstants;
+import com.testing.traveloka.constants.TravelokaConfigConstants;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.TouchAction;
 import io.appium.java_client.touch.WaitOptions;
 import io.appium.java_client.touch.offset.PointOption;
 import org.openqa.selenium.By;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -28,11 +32,6 @@ public class Utility {
     private final static boolean CLICK_TRUE = true;
     private final static boolean CLICK_FALSE = false;
 
-    private final static long DEFAULT_TIMEOUT = 30;
-    private final static long ZERO_TIMEOUT = 0;
-
-    private final static long DEFAULT_SWIPE_DURATION = 1;
-
     /**
      * This method used to get element by id with default timeout
      * @param driver WebDriver
@@ -40,8 +39,8 @@ public class Utility {
      * @return WebElement
      */
     public static WebElement GetElementById (WebDriver driver, String id) {
-        return webElementUtility(driver, id, ConfigConstants.ELEMENT_TYPE_ID, CLICK_FALSE,
-                NO_SENDKEYS, DEFAULT_TIMEOUT);
+        return webElementUtility(driver, id, ElementConstants.FIND_ELEMENT_TYPE_ID, CLICK_FALSE,
+                NO_SENDKEYS, ConfigConstants.DEFAULT_TIMEOUT);
     }
 
     /**
@@ -51,23 +50,8 @@ public class Utility {
      * @return WebElement
      */
     public static WebElement ClickElementById (WebDriver driver, String id) {
-        return webElementUtility(driver, id, ConfigConstants.ELEMENT_TYPE_ID, CLICK_TRUE,
-                NO_SENDKEYS, DEFAULT_TIMEOUT);
-    }
-
-    /**
-     * This method used to get element by id and click with true or false timeout
-     * @param driver WebDriver
-     * @param id
-     * @param timeout false to set no timeout, true to use default timeout
-     * @return
-     */
-    public static WebElement ClickElementById (WebDriver driver, String id, boolean timeout) {
-        if (timeout)
-            return ClickElementByText(driver, id);
-        else
-            return webElementUtility(driver, id, ConfigConstants.ELEMENT_TYPE_ID, CLICK_TRUE,
-                    NO_SENDKEYS, ZERO_TIMEOUT);
+        return webElementUtility(driver, id, ElementConstants.FIND_ELEMENT_TYPE_ID, CLICK_TRUE,
+                NO_SENDKEYS, ConfigConstants.DEFAULT_TIMEOUT);
     }
 
     /**
@@ -78,7 +62,7 @@ public class Utility {
      * @return
      */
     public static WebElement ClickElementById (WebDriver driver, String id, long timeout) {
-        return webElementUtility(driver, id, ConfigConstants.ELEMENT_TYPE_ID, CLICK_TRUE,
+        return webElementUtility(driver, id, ElementConstants.FIND_ELEMENT_TYPE_ID, CLICK_TRUE,
                 NO_SENDKEYS, timeout);
     }
 
@@ -89,79 +73,8 @@ public class Utility {
      * @return WebElement
      */
     public static WebElement SendKeysElementById (WebDriver driver, String id, String sendKeys) {
-        return webElementUtility(driver, id, ConfigConstants.ELEMENT_TYPE_ID, CLICK_FALSE,
-                sendKeys, DEFAULT_TIMEOUT);
-    }
-
-    /**
-     * This method used to find element by text with default timeout
-     * @param driver
-     * @param text
-     * @return WebElement
-     */
-    public static WebElement GetElementByText (WebDriver driver, String text) {
-        return webElementUtility(driver, text, ConfigConstants.ELEMENT_TYPE_TEXT_TEXT_VIEW, CLICK_FALSE,
-                NO_SENDKEYS, DEFAULT_TIMEOUT);
-    }
-
-    /**
-     * This method used to find element by text and click with default timeout
-     * @param driver web driver
-     * @param text
-     * @return WebElement
-     */
-    public static WebElement ClickElementByText (WebDriver driver, String text) {
-        return ClickElementByText(driver, text, DEFAULT_TIMEOUT);
-    }
-
-    /**
-     * This method used to find element by id then click with 1s timeout and 1s delay
-     * @param driver web driver
-     * @param text element which need to be found
-     * @return WebElement
-     */
-    public static WebElement ClickElementByText (WebDriver driver, String text, String type) {
-        return webElementUtility(driver, text, type, CLICK_TRUE,
-                NO_SENDKEYS, DEFAULT_TIMEOUT);
-    }
-
-    /**
-     * This method used to find element by text and click with true or false timeout
-     * @param driver web driver
-     * @param text
-     * @param timeout false to set no timeout, true to use default timeout
-     * @return WebElement
-     */
-    public static WebElement ClickElementByText (WebDriver driver, String text, boolean timeout) {
-        if (timeout)
-            return ClickElementByText(driver, text);
-        else
-            return webElementUtility(driver, text, ConfigConstants.ELEMENT_TYPE_TEXT_TEXT_VIEW, CLICK_TRUE,
-                    NO_SENDKEYS, ZERO_TIMEOUT);
-    }
-
-    /**
-     * This method used to find element by text and click with input timeout
-     * @param driver web driver
-     * @param text
-     * @param timeout in seconds
-     * @return WebElement
-     */
-    public static WebElement ClickElementByText (WebDriver driver, String text, long timeout) {
-            return webElementUtility(driver, text, ConfigConstants.ELEMENT_TYPE_TEXT_TEXT_VIEW, CLICK_TRUE,
-                    NO_SENDKEYS, timeout);
-    }
-
-    /**
-     * This method used to find element by text and send keys with default timeout
-     * @param driver web driver
-     * @param text
-     * @param sendKeys
-     * @return WebElement
-     */
-    public static WebElement SendKeysElementByText (WebDriver driver, String text, String sendKeys) {
-        return webElementUtility(driver, text, ConfigConstants.ELEMENT_TYPE_TEXT_TEXT_VIEW, CLICK_FALSE,
-                sendKeys, DEFAULT_TIMEOUT);
+        return webElementUtility(driver, id, ElementConstants.FIND_ELEMENT_TYPE_ID, CLICK_FALSE,
+                sendKeys, ConfigConstants.DEFAULT_TIMEOUT);
     }
 
     /**
@@ -171,8 +84,8 @@ public class Utility {
      * @return WebElement
      */
     public static WebElement ClickElementByClassName (WebDriver driver, String className) {
-        return webElementUtility(driver, className, ConfigConstants.ELEMENT_TYPE_CLASSNAME, CLICK_TRUE,
-                NO_SENDKEYS, DEFAULT_TIMEOUT);
+        return webElementUtility(driver, className, ElementConstants.FIND_ELEMENT_TYPE_CLASSNAME, CLICK_TRUE,
+                NO_SENDKEYS, ConfigConstants.DEFAULT_TIMEOUT);
     }
 
     /**
@@ -182,8 +95,106 @@ public class Utility {
      * @return WebElement
      */
     public static WebElement SendKeysElementByClassName (WebDriver driver, String className, String sendKeys) {
-        return webElementUtility(driver, className, ConfigConstants.ELEMENT_TYPE_CLASSNAME, CLICK_FALSE,
-                sendKeys, DEFAULT_TIMEOUT);
+        return webElementUtility(driver, className, ElementConstants.FIND_ELEMENT_TYPE_CLASSNAME, CLICK_FALSE,
+                sendKeys, ConfigConstants.DEFAULT_TIMEOUT);
+    }
+
+    /**
+     * This method used to find element by text with default timeout
+     * @param driver
+     * @return WebElement
+     */
+    public static WebElement GetElementByXPath(WebDriver driver, String element, String param, String value) {
+        String xpath = "//" + element + "[@" + param + "='" + value + "']";
+        return webElementUtility(driver, xpath, ElementConstants.FIND_ELEMENT_TYPE_XPATH, CLICK_FALSE,
+                NO_SENDKEYS, ConfigConstants.DEFAULT_TIMEOUT);
+    }
+
+    /**
+     * This method used to find element by text and click with default timeout
+     * @param driver web driver
+     * @return WebElement
+     */
+    public static WebElement ClickElementByXPath(WebDriver driver, String element, String param, String value) {
+        String xpath = "//" + element + "[@" + param + "='" + value + "']";
+        return webElementUtility(driver, xpath, ElementConstants.FIND_ELEMENT_TYPE_XPATH, CLICK_TRUE,
+                NO_SENDKEYS, ConfigConstants.DEFAULT_TIMEOUT);
+    }
+
+    /**
+     * This method used to find element by text and click with input timeout
+     * @param driver web driver
+     * @param timeout in seconds
+     * @return WebElement
+     */
+    public static WebElement ClickElementByXPath(WebDriver driver, String element, String param, String value, long timeout) {
+        String xpath = "//" + element + "[@" + param + "='" + value + "']";
+        return webElementUtility(driver, xpath, ElementConstants.FIND_ELEMENT_TYPE_XPATH, CLICK_TRUE,
+                NO_SENDKEYS, timeout);
+    }
+
+    /**
+     * This method used to find element by text and send keys with default timeout
+     * @param driver web driver
+     * @param sendKeys
+     * @return WebElement
+     */
+    public static WebElement SendKeysElementByXPath(WebDriver driver, String element, String param, String value, String sendKeys) {
+        String xpath = "//" + element + "[@" + param + "='" + value + "']";
+        return webElementUtility(driver, xpath, ElementConstants.FIND_ELEMENT_TYPE_XPATH, CLICK_FALSE,
+                sendKeys, ConfigConstants.DEFAULT_TIMEOUT);
+    }
+
+    /**
+     * This method used to get element by css selector without element and click with default timeout
+     * @param driver
+     * @param param
+     * @param value
+     * @return WebElement
+     */
+    public static WebElement ClickElementByCssSelector (WebDriver driver, String param, String value) {
+        return ClickElementByCssSelector(driver, Constants.EMPTY, param, value);
+    }
+
+    /**
+     * This method used to get element by css selector and click with default timeout
+     * @param driver
+     * @param element or tag
+     * @param param
+     * @param value
+     * @return WebElement
+     */
+    public static WebElement ClickElementByCssSelector (WebDriver driver, String element, String param, String value) {
+        String cssSelector = element + "[" + param + "='" + value + "']";
+        return webElementUtility(driver, cssSelector, ElementConstants.FIND_ELEMENT_TYPE_CSSSELECTOR,
+                CLICK_TRUE, NO_SENDKEYS, ConfigConstants.DEFAULT_TIMEOUT);
+    }
+
+    /**
+     * This method used to get element by css selector without element and send keys with default timeout
+     * @param driver
+     * @param param
+     * @param value
+     * @return WebElement
+     */
+    public static WebElement SendKeysElementByCssSelector (WebDriver driver, String param,
+                                                           String value, String sendKeys) {
+        return SendKeysElementByCssSelector(driver, Constants.EMPTY, param, value, sendKeys);
+    }
+
+    /**
+     * This method used to get element by css selector and send keys with default timeout
+     * @param driver
+     * @param element or tag
+     * @param param
+     * @param value
+     * @return WebElement
+     */
+    public static WebElement SendKeysElementByCssSelector (WebDriver driver, String element,
+                                                           String param, String value, String sendKeys) {
+        String cssSelector = element + "[" + param + "='" + value + "']";
+        return webElementUtility(driver, cssSelector, ElementConstants.FIND_ELEMENT_TYPE_CSSSELECTOR,
+                CLICK_FALSE, sendKeys, ConfigConstants.DEFAULT_TIMEOUT);
     }
 
     private static WebElement webElementUtility (WebDriver driver, String input, String type, boolean click,
@@ -197,7 +208,6 @@ public class Utility {
 
             if (webElement == null) {
                 Log.Warning("Result: Timeout " + timeout + "s with input = " + input + ", type = " + type);
-//                System.out.println("Result: Timeout " + timeout + "s with input = " + input + ", type = " + type);
                 return null;
             } else {
 
@@ -206,9 +216,6 @@ public class Utility {
 
                 if (sendKeys != null)
                     webElement.sendKeys(sendKeys);
-
-                /*System.out.println("Result: WebElement found with input = " + input + ", type = " + type
-                        + ", click = " + click + ", sendKeys = " + sendKeys);*/
             }
 
             return webElement;
@@ -225,35 +232,30 @@ public class Utility {
         driver.manage().timeouts().implicitlyWait(timeout, TimeUnit.SECONDS);
         */
 
-        if (type.equals(ConfigConstants.ELEMENT_TYPE_TEXT_TEXT_VIEW)) {
-            String xpath = "//android.widget.TextView[@text='" + input + "']";
-            wait.until(ExpectedConditions.elementToBeClickable(By.xpath(xpath)));
+        try {
+            if (type.equals(ElementConstants.FIND_ELEMENT_TYPE_ID)) {
+                wait.until(ExpectedConditions.elementToBeClickable(By.id(input)));
+                webElement = driver.findElement(By.id(input));
 
-            webElement = driver.findElement(By.xpath(xpath));
+            } else if (type.equals(ElementConstants.FIND_ELEMENT_TYPE_CLASSNAME)) {
+                wait.until(ExpectedConditions.elementToBeClickable(By.className(input)));
+                webElement = driver.findElement(By.className(input));
 
-        } else if (type.equals(ConfigConstants.ELEMENT_TYPE_TEXT_BUTTON)) {
-            String xpath = "//android.widget.Button[@text='" + input + "']";
-            wait.until(ExpectedConditions.elementToBeClickable(By.xpath(xpath)));
+            } else if (type.equals(ElementConstants.FIND_ELEMENT_TYPE_XPATH)) {
+                wait.until(ExpectedConditions.elementToBeClickable(By.xpath(input)));
+                webElement = driver.findElement(By.xpath(input));
 
-            webElement = driver.findElement(By.xpath(xpath));
+            } else if (type.equals(ElementConstants.FIND_ELEMENT_TYPE_CSSSELECTOR)) {
+                wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(input)));
+                webElement = driver.findElement(By.cssSelector(input));
 
-        } else if (type.equals(ConfigConstants.ELEMENT_TYPE_DIV_CLASS)) {
-            String xpath = "//div[@class='" + input + "']";
-            wait.until(ExpectedConditions.elementToBeClickable(By.xpath(xpath)));
-
-            webElement = driver.findElement(By.xpath(xpath));
-        } else if (type.equals(ConfigConstants.ELEMENT_TYPE_ID)) {
-            wait.until(ExpectedConditions.elementToBeClickable(By.id(input)));
-
-            webElement = driver.findElement(By.id(input));
-
-        } else if (type.equals(ConfigConstants.ELEMENT_TYPE_CLASSNAME)) {
-            wait.until(ExpectedConditions.elementToBeClickable(By.className(input)));
-
-            webElement = driver.findElement(By.className(input));
-        } else {
-            Log.Error("Type is not defined");
-            return null;
+            } else {
+                Log.Error("Type is not defined");
+                return null;
+            }
+        } catch (Exception e) {
+            Log.Error("Error: " + e);
+            throw new TimeoutException();
         }
         return webElement;
     }
@@ -265,8 +267,8 @@ public class Utility {
      * @return List<WebElement>
      */
     public static List<WebElement> GetElementsById (WebDriver driver, String id) {
-        return webElementsUtility(driver, id, ConfigConstants.ELEMENT_TYPE_ID, CLICK_FALSE,
-                ConfigConstants.FIRST_INDEX, DEFAULT_TIMEOUT);
+        return webElementsUtility(driver, id, ElementConstants.FIND_ELEMENT_TYPE_ID, CLICK_FALSE,
+                Constants.FIRST_INDEX, ConfigConstants.DEFAULT_TIMEOUT);
     }
 
     /**
@@ -276,14 +278,39 @@ public class Utility {
      * @return List<WebElement>
      */
     public static List<WebElement> ClickElementsById (WebDriver driver, String id, int index) {
-        return webElementsUtility(driver, id, ConfigConstants.ELEMENT_TYPE_ID, CLICK_TRUE,
-                index, DEFAULT_TIMEOUT);
+        return webElementsUtility(driver, id, ElementConstants.FIND_ELEMENT_TYPE_ID, CLICK_TRUE,
+                index, ConfigConstants.DEFAULT_TIMEOUT);
     }
 
-    public static List<WebElement> ClickElementsByValue (WebDriver driver, String value
-            , String type, int index) {
-        return webElementsUtility(driver, value, type, CLICK_TRUE,
-                index, DEFAULT_TIMEOUT);
+    public static List<WebElement> ClickElementsByXpath(WebDriver driver, String element,
+                                                        String param, String value, int index) {
+        String xpath = "//" + element + "[@" + param + "='" + value + "']";
+        return webElementsUtility(driver, xpath, ElementConstants.FIND_ELEMENT_TYPE_XPATH, CLICK_TRUE,
+                index, ConfigConstants.DEFAULT_TIMEOUT);
+    }
+
+    public static List<WebElement> GetElementsByCssSelector(WebDriver driver,
+                                                            String param, String value) {
+        return GetElementsByCssSelector(driver, Constants.EMPTY, param, value);
+    }
+
+    public static List<WebElement> GetElementsByCssSelector(WebDriver driver, String element,
+                                                              String param, String value) {
+        String cssSelector = element + "[" + param + "='" + value + "']";
+        return webElementsUtility(driver, cssSelector, ElementConstants.FIND_ELEMENT_TYPE_CSSSELECTOR,
+                CLICK_FALSE, Constants.FIRST_INDEX, ConfigConstants.DEFAULT_TIMEOUT);
+    }
+
+    public static List<WebElement> ClickElementsByCssSelector(WebDriver driver, String param,
+                                                              String value, int index) {
+        return ClickElementsByCssSelector(driver, Constants.EMPTY, param, value, index);
+    }
+
+    public static List<WebElement> ClickElementsByCssSelector(WebDriver driver, String element,
+                                                              String param, String value, int index) {
+        String cssSelector = element + "[" + param + "='" + value + "']";
+        return webElementsUtility(driver, cssSelector, ElementConstants.FIND_ELEMENT_TYPE_CSSSELECTOR,
+                CLICK_TRUE, index, ConfigConstants.DEFAULT_TIMEOUT);
     }
 
     /**
@@ -293,8 +320,8 @@ public class Utility {
      * @return List<WebElement>
      */
     public static List<WebElement> GetElementsByClass (WebDriver driver, String className) {
-        return webElementsUtility(driver, className, ConfigConstants.ELEMENT_TYPE_CLASSNAME, CLICK_FALSE,
-                ConfigConstants.FIRST_INDEX, DEFAULT_TIMEOUT);
+        return webElementsUtility(driver, className, ElementConstants.FIND_ELEMENT_TYPE_CLASSNAME,
+                CLICK_FALSE, Constants.FIRST_INDEX, ConfigConstants.DEFAULT_TIMEOUT);
     }
 
     private static List<WebElement> webElementsUtility (WebDriver driver, String input, String type, boolean click,
@@ -302,25 +329,23 @@ public class Utility {
         if (driver == null) {
             return null;
         } else {
-            List<WebElement> webElement;
+            List<WebElement> webElements;
 
-            webElement = findWebElements(driver, type, input, timeout);
+            webElements = findWebElements(driver, type, input, timeout);
 
-            if (webElement == null) {
+            Log.Debug("Web elements input: " + input + "|type: " + type + "|size: " + webElements.size());
+
+            if (webElements == null) {
                 Log.Warning("Result: Timeout " + timeout + "s with input = " + input + ", type = " + type);
-//                System.out.println("Result: Timeout " + timeout + "s with input = " + input + ", type = " + type);
                 return null;
             } else {
                 if (click) {
-                    WebElement element = webElement.get(index);
+                    WebElement element = webElements.get(index);
                     element.click();
                 }
-
-                /*System.out.println("Result: WebElements found with input = " + input + ", type = " + type
-                        + ", click = " + click + ", index = " + index);*/
             }
 
-            return webElement;
+            return webElements;
         }
     }
 
@@ -328,20 +353,22 @@ public class Utility {
         List<WebElement> webElement;
         WebDriverWait wait = new WebDriverWait(driver, timeout);
 
-        if (type.equals(ConfigConstants.ELEMENT_TYPE_DIV_CLASS)) {
-            String xpath = "//div[@class='" + input + "']";
-            wait.until(ExpectedConditions.elementToBeClickable(By.xpath(xpath)));
-
-            webElement = driver.findElements(By.xpath(xpath));
-        } else if (type.equals(ConfigConstants.ELEMENT_TYPE_ID)) {
+        if (type.equals(ElementConstants.FIND_ELEMENT_TYPE_ID)) {
             wait.until(ExpectedConditions.elementToBeClickable(By.id(input)));
-
             webElement = driver.findElements(By.id(input));
 
-        } else if (type.equals(ConfigConstants.ELEMENT_TYPE_CLASSNAME)) {
+        } else if (type.equals(ElementConstants.FIND_ELEMENT_TYPE_CLASSNAME)) {
             wait.until(ExpectedConditions.elementToBeClickable(By.className(input)));
-
             webElement = driver.findElements(By.className(input));
+
+        } else if (type.equals(ElementConstants.FIND_ELEMENT_TYPE_XPATH)) {
+            wait.until(ExpectedConditions.elementToBeClickable(By.xpath(input)));
+            webElement = driver.findElements(By.xpath(input));
+
+        } else if (type.equals(ElementConstants.FIND_ELEMENT_TYPE_CSSSELECTOR)) {
+            wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(input)));
+            webElement = driver.findElements(By.cssSelector(input));
+
         } else {
             Log.Error("Type is not defined");
             return null;
@@ -369,7 +396,7 @@ public class Utility {
     public static void SwipeVerticalByCoordinates(AppiumDriver driver, int startPoint, int endPoint, int anchor) {
         TouchAction touchAction = new TouchAction(driver);
         touchAction.press(PointOption.point(anchor, startPoint))
-                .waitAction(WaitOptions.waitOptions(Duration.ofSeconds(DEFAULT_SWIPE_DURATION)))
+                .waitAction(WaitOptions.waitOptions(Duration.ofSeconds(ConfigConstants.SWIPE_DURATION)))
                 .moveTo(PointOption.point(anchor, endPoint))
                 .release().perform();
     }
@@ -384,7 +411,7 @@ public class Utility {
     public static void SwipeHorizontalByCoordinates (AppiumDriver driver, int startPoint, int endPoint, int anchor) {
         TouchAction touchAction = new TouchAction(driver);
         touchAction.press(PointOption.point(startPoint, anchor))
-                .waitAction(WaitOptions.waitOptions(Duration.ofSeconds(DEFAULT_SWIPE_DURATION)))
+                .waitAction(WaitOptions.waitOptions(Duration.ofSeconds(ConfigConstants.SWIPE_DURATION)))
                 .moveTo(PointOption.point(endPoint, anchor))
                 .release().perform();
     }
@@ -400,7 +427,7 @@ public class Utility {
     public static void SwipeByCoordinates (AppiumDriver driver, int startX, int startY, int endX, int endY) {
         TouchAction touchAction = new TouchAction(driver);
         touchAction.press(PointOption.point(startX, startY))
-                .waitAction(WaitOptions.waitOptions(Duration.ofSeconds(DEFAULT_SWIPE_DURATION)))
+                .waitAction(WaitOptions.waitOptions(Duration.ofSeconds(ConfigConstants.SWIPE_DURATION)))
                 .moveTo(PointOption.point(endX, endY))
                 .release().perform();
     }

@@ -7,7 +7,7 @@
 
 package com.testing.traveloka.constants;
 
-public class CoordinateConstants {
+public class TravelokaCoordinateConstants {
 
     public final static int HOME_FLIGHT_X_NO_LOGIN = 110;
     public final static int HOME_FLIGHT_Y_NO_LOGIN = 505;
