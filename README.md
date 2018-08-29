@@ -4,7 +4,7 @@ Appium Testing Framework for Traveloka Android App
 [![traveloka-icon](https://user-images.githubusercontent.com/12959761/44567746-109a0200-a79e-11e8-8e57-8bed67ac3087.png)](https://www.traveloka.com/en/)
 
 This Appium Traveloka framework is Java implementation of the [Appium](https://github.com/appium/appium) 
-framework for [Selenium](https://github.com/SeleniumHQ/selenium) software-testing framework and [TestNG](https://github.com/cbeust/testng) 
+framework and [Selenium](https://github.com/SeleniumHQ/selenium) software-testing framework with [TestNG](https://github.com/cbeust/testng) 
 testing framework to create easy automate testing for Traveloka Android Application which written in Java & XML.
 
 This testing framework is applying the automation build using [Maven](https://maven.apache.org/) and [Jenkins](https://jenkins.io/) 
@@ -23,51 +23,53 @@ Included in `pom.xml` for maven dependency
 
 ### Supported Platforms
 * Android
+* Web Application
 
 ### API Features
-* Wait Get Element By ID, Name, & ClassName
-* Wait for Click Element By ID, Name, & ClassName
-* Wait to Send Keys Element By ID, Name, & ClassName
-* Wait to Get Elements By ID & ClassName
-* Click Elements By ID Using Index
+* Wait Get Element By ID, ClassName, XPath, CSSSelector
+* Wait for Click Element By ID, ClassName, XPath, CSSSelector
+* Wait to Send Keys Element By ID, ClassName, XPath, CSSSelector
+* Wait to Get Elements By ID, ClassName, XPath, CSSSelector
+* Wait Get Elements By ID, ClassName, XPath, CSSSelector (Support index)
+* Wait Click Elements By ID, ClassName, XPath, CSSSelector (Support Index)
 * Tap By Coordinates
 * Swipe Vertically, Horizontally, & By Coordinates
 
 ### Suites Capabilities:
 * Test Suites (Collection of Test Cases)
 * Multiple Test Suites
-* Parallel Test
-* Multithreading Test
+* Parallel Execution (Multithreading) Test
+* Multiplatform Parallel Execution Test
 
 ### Functionality Capabilities:
-**Splash Screen:**
+**Splash Screen: (Android Only)**
 * Select Country & Language
 * Skip Splash Screen
 
-**Home:**
+**Home: (Android, Web)**
 * Navigate to Flights
 * Navigate to Log In and Register
 
-**Member:**
+**Member: (Android)**
 * Click Log In & Register
 
-**Login:**
-* Log in with Email, Facebook, & Google
+**Login: (Android)**
+* Login with Email, Facebook, & Google
 
-**Search Flights:**
+**Search Flights: (Android, Web)**
 * Set Origin, Destination, Departure Date, Passenger, Seat Class, & Return Date
 * Swap Origin & Destination
 * Return Switch
 * Search Flights
 
-**Select Flight:**
+**Select Flight: (Android, Web)**
 * Sort By
 * Print & Select Flight
 
-**Booking Summary:**
+**Booking Summary: (Android)**
 * Select
 
-**Fill in Details - Book:**
+**Fill in Details - Book: (Android)**
 * Fill in Contact & Traveler Details
 * Continue
 
