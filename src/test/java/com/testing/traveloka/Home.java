@@ -35,15 +35,8 @@ public class Home {
                 Log.Debug("Tooltip is not available");
             }
         } else if (ConfigConstants.PLATFORM_WEB.equalsIgnoreCase(platform)) {
-            /*Utility.ClickElementByXPath(Handler.GetCurrentWebDriver(),
-                    WebElementConstants.CLASS_DIV,
-                    WebElementConstants.PARAM_CLASS, TravelokaWebElementConstants.HOME_FLIGHTS_NOT_CLICKED);*/
-
             Utility.ClickElementByCssSelector(Handler.GetCurrentWebDriver(), WebElementConstants.PARAM_CLASS,
                     TravelokaWebElementConstants.HOME_FLIGHTS_NOT_CLICKED);
-
-            /*Utility.ClickElementByCssSelector(Handler.GetCurrentWebDriver(), WebElementConstants.PARAM_CLASS,
-                    TravelokaWebElementConstants.HOME_FLIGHTS_CLICKED);*/
         } else {
             throw new SkipException("Platform is not available for test");
         }

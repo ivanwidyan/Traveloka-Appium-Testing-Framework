@@ -11,7 +11,9 @@ import com.testing.Handler;
 import com.testing.Utility;
 import com.testing.constants.AndroidElementConstants;
 import com.testing.constants.ConfigConstants;
+import com.testing.constants.WebElementConstants;
 import com.testing.traveloka.constants.TravelokaAndroidElementConstants;
+import com.testing.traveloka.constants.TravelokaWebElementConstants;
 import org.testng.SkipException;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
@@ -36,7 +38,14 @@ public class BookingSummary {
                     AndroidElementConstants.CLASS_ANDROID_WIDGET_TEXTVIEW,
                     AndroidElementConstants.PARAM_TEXT, TravelokaAndroidElementConstants.TEXT_FLIGHT);
 
-            Utility.ClickElementById(Handler.GetCurrentAppiumDriver(), TravelokaAndroidElementConstants.ID_BUTTON_SELECT);
+            Utility.ClickElementById(Handler.GetCurrentAppiumDriver(),
+                    TravelokaAndroidElementConstants.ID_BUTTON_SELECT);
+
+        } else if (ConfigConstants.PLATFORM_WEB.equalsIgnoreCase(platform)) {
+            Utility.ClickElementByCssSelector(Handler.GetCurrentWebDriver(),
+                    WebElementConstants.PARAM_DATA_ID,
+                    TravelokaWebElementConstants.PREBOOK_CONFIRM_BUTTON);
+
         } else {
             throw new SkipException("This test only for Android!");
         }

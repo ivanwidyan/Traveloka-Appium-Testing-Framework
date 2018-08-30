@@ -14,7 +14,6 @@ import com.testing.constants.ConfigConstants;
 import com.testing.constants.Constants;
 import com.testing.constants.WebElementConstants;
 import com.testing.traveloka.constants.TravelokaAndroidElementConstants;
-import com.testing.traveloka.constants.TravelokaConfigConstants;
 import com.testing.traveloka.constants.TravelokaWebElementConstants;
 import org.openqa.selenium.WebElement;
 import org.testng.SkipException;
@@ -26,6 +25,13 @@ import java.util.List;
 
 public class SelectFlight {
 
+    private final static int SORT_BY_LOWEST_PRICE_INDEX = 0;
+    private final static int SORT_BY_EARLIEST_DEPARTURE_INDEX = 1;
+    private final static int SORT_BY_LATEST_DEPARTURE_INDEX = 2;
+    private final static int SORT_BY_EARLIEST_ARRIVAL_INDEX = 3;
+    private final static int SORT_BY_LATEST_ARRIVAL_INDEX = 4;
+    private final static int SORT_BY_SHORTEST_DURATION_INDEX = 5;
+    
     @Test
     @Parameters({"platform", "input"})
     public void SortBy(String platform, @Optional String input) {
@@ -52,22 +58,33 @@ public class SelectFlight {
                 System.out.println("SortBy doesn't have date input");
             }
         } else if (ConfigConstants.PLATFORM_WEB.equalsIgnoreCase(platform)) {
-
             int sortByIndex = Constants.FIRST_INDEX;
-            if (TravelokaAndroidElementConstants.TEXT_EARLIEST_DEPARTURE.equalsIgnoreCase(input))
-                sortByIndex = Constants.SECOND_INDEX;
+            if (TravelokaAndroidElementConstants.TEXT_LOWEST_PRICE.equalsIgnoreCase(input))
+                sortByIndex = SORT_BY_LOWEST_PRICE_INDEX;
+            else if (TravelokaAndroidElementConstants.TEXT_EARLIEST_DEPARTURE.equalsIgnoreCase(input))
+                sortByIndex = SORT_BY_EARLIEST_DEPARTURE_INDEX;
+            else if (TravelokaAndroidElementConstants.TEXT_LATEST_DEPARTURE.equalsIgnoreCase(input))
+                sortByIndex = SORT_BY_LATEST_DEPARTURE_INDEX;
+            else if (TravelokaAndroidElementConstants.TEXT_EARLIEST_ARRIVAL.equalsIgnoreCase(input))
+                sortByIndex = SORT_BY_EARLIEST_ARRIVAL_INDEX;
+            else if (TravelokaAndroidElementConstants.TEXT_LATEST_ARRIVAL.equalsIgnoreCase(input))
+                sortByIndex = SORT_BY_LATEST_ARRIVAL_INDEX;
+            else if (TravelokaAndroidElementConstants.TEXT_SHORTEST_DURATION.equalsIgnoreCase(input))
+                sortByIndex = SORT_BY_SHORTEST_DURATION_INDEX;
+            else
+                System.out.println("Flight Sort By: " + input + " is not available");
 
             Utility.ClickElementByCssSelector(Handler.GetCurrentWebDriver(),
                     WebElementConstants.PARAM_CLASS,
-                    TravelokaWebElementConstants.VALUE_FILTER_MENU_SORT);
+                    TravelokaWebElementConstants.FLIGHT_FILTER_MENU_SORT);
 
             Utility.ClickElementsByCssSelector(Handler.GetCurrentWebDriver(),
                     WebElementConstants.PARAM_CLASS,
-                    TravelokaWebElementConstants.VALUE_SORT_BY_INDEX, sortByIndex);
+                    TravelokaWebElementConstants.FLIGHT_SORT_BY_INDEX, sortByIndex);
 
             Utility.ClickElementByCssSelector(Handler.GetCurrentWebDriver(),
                     WebElementConstants.PARAM_CLASS,
-                    TravelokaWebElementConstants.VALUE_FILTER_MENU_SORT);
+                    TravelokaWebElementConstants.FLIGHT_FILTER_MENU_SORT);
 
         } else {
             throw new SkipException("Platform is not available");
@@ -90,7 +107,12 @@ public class SelectFlight {
         }
 
         if (ConfigConstants.PLATFORM_ANDROID.equalsIgnoreCase(platform)) {
-            Utility.ClickElementsById(Handler.GetCurrentAppiumDriver(), TravelokaAndroidElementConstants.ID_TEXT_VIEW_FLIGHT_NAME, index);
+            Utility.ClickElementsById(Handler.GetCurrentAppiumDriver(),
+                    TravelokaAndroidElementConstants.ID_TEXT_VIEW_FLIGHT_NAME, index);
+        } else if (ConfigConstants.PLATFORM_WEB.equalsIgnoreCase(platform)) {
+            Utility.ClickElementByCssSelector(Handler.GetCurrentWebDriver(),
+                    WebElementConstants.PARAM_DATA_ID,
+                    TravelokaWebElementConstants.FLIGHT_SUBMIT_BUTTON);
         } else {
             throw new SkipException("This test only for Android!");
         }
@@ -113,10 +135,10 @@ public class SelectFlight {
 
             PrintFlightInformation (Utility.GetElementsByCssSelector(Handler.GetCurrentWebDriver(),
                     WebElementConstants.PARAM_CLASS,
-                    TravelokaWebElementConstants.VALUE_ALL_FLIGHT_INFORMATION),
+                    TravelokaWebElementConstants.FLIGHT_ALL_INFORMATION),
                     Utility.GetElementsByCssSelector(Handler.GetCurrentWebDriver(),
                     WebElementConstants.PARAM_DATA_ID,
-                    TravelokaWebElementConstants.VALUE_PRICE_NOW));
+                    TravelokaWebElementConstants.FLIGHT_PRICE_NOW));
         } else {
             throw new SkipException("Platform is not available");
         }

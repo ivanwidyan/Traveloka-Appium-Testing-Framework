@@ -30,46 +30,47 @@ public class SearchFlights {
     @Test
     @Parameters({"platform", "input"})
     public void SetOrigin(String platform, @Optional String input) {
-        if (ConfigConstants.PLATFORM_ANDROID.equalsIgnoreCase(platform)) {
-            if (input != null) {
-                Utility.ClickElementByXPath(Handler.GetCurrentAppiumDriver(),
-                        AndroidElementConstants.CLASS_ANDROID_WIDGET_TEXTVIEW,
-                        AndroidElementConstants.PARAM_TEXT, TravelokaAndroidElementConstants.TEXT_ORIGIN);
+        if (input != null) {
+            if (ConfigConstants.PLATFORM_ANDROID.equalsIgnoreCase(platform)) {
 
-                Utility.SendKeysElementById(Handler.GetCurrentAppiumDriver(),
-                        TravelokaAndroidElementConstants.ID_TEXT_SEARCH_CONSTRAINTS, input);
+                    Utility.ClickElementByXPath(Handler.GetCurrentAppiumDriver(),
+                            AndroidElementConstants.CLASS_ANDROID_WIDGET_TEXTVIEW,
+                            AndroidElementConstants.PARAM_TEXT, TravelokaAndroidElementConstants.TEXT_ORIGIN);
 
-                List<WebElement> origin = Utility.ClickElementsById(Handler.GetCurrentAppiumDriver(),
-                        TravelokaAndroidElementConstants.ID_TEXT_VIEW_GEO_NAME, Constants.FIRST_INDEX);
+                    Utility.SendKeysElementById(Handler.GetCurrentAppiumDriver(),
+                            TravelokaAndroidElementConstants.ID_TEXT_SEARCH_CONSTRAINTS, input);
 
-                if (origin == null) {
-                    Utility.ClickElementById(Handler.GetCurrentAppiumDriver(),
-                            TravelokaAndroidElementConstants.ID_TEXT_VIEW_DIALOG_CLOSE);
-                    Log.Debug("Origin not found");
-                }
+                    List<WebElement> origin = Utility.ClickElementsById(Handler.GetCurrentAppiumDriver(),
+                            TravelokaAndroidElementConstants.ID_TEXT_VIEW_GEO_NAME, Constants.FIRST_INDEX);
+
+                    if (origin == null) {
+                        Utility.ClickElementById(Handler.GetCurrentAppiumDriver(),
+                                TravelokaAndroidElementConstants.ID_TEXT_VIEW_DIALOG_CLOSE);
+                        Log.Debug("Origin not found");
+                    }
+            } else if (ConfigConstants.PLATFORM_WEB.equalsIgnoreCase(platform)) {
+
+                Utility.SendKeysElementByCssSelector(Handler.GetCurrentWebDriver(),
+                        WebElementConstants.PARAM_DATA_ID,
+                        TravelokaWebElementConstants.SEARCH_FLIGHT_SOURCE, input);
+
+                Utility.ClickElementsByCssSelector(Handler.GetCurrentWebDriver(),
+                        WebElementConstants.PARAM_CLASS,
+                        TravelokaWebElementConstants.VALUE_SUGGESTION_ITEM,
+                        Constants.SECOND_INDEX);
             } else {
-                System.out.println("setOrigin doesn't have input");
+                throw new SkipException("Platform is not available");
             }
-        } else if (ConfigConstants.PLATFORM_WEB.equalsIgnoreCase(platform)) {
-
-            WebElement flightSource = Utility.SendKeysElementByCssSelector(Handler.GetCurrentWebDriver(),
-                    WebElementConstants.PARAM_DATA_ID,
-                    TravelokaWebElementConstants.VALUE_FLIGHT_SOURCE, input);
-
-            Utility.ClickElementsByXpath(Handler.GetCurrentWebDriver(),
-                    WebElementConstants.CLASS_DIV, WebElementConstants.PARAM_CLASS,
-                    TravelokaWebElementConstants.VALUE_SUGGESTION_ITEM,
-                    Constants.SECOND_INDEX);
         } else {
-            throw new SkipException("Platform is not available");
+            System.out.println("setOrigin doesn't have input");
         }
     }
 
     @Test
     @Parameters({"platform", "input"})
     public void SetDestination(String platform, @Optional String input) {
-        if (ConfigConstants.PLATFORM_ANDROID.equalsIgnoreCase(platform)) {
-            if (input != null) {
+        if (input != null) {
+            if (ConfigConstants.PLATFORM_ANDROID.equalsIgnoreCase(platform)) {
                 Utility.ClickElementByXPath(Handler.GetCurrentAppiumDriver(),
                         AndroidElementConstants.CLASS_ANDROID_WIDGET_TEXTVIEW,
                         AndroidElementConstants.PARAM_TEXT,
@@ -86,44 +87,63 @@ public class SearchFlights {
                             TravelokaAndroidElementConstants.ID_TEXT_VIEW_DIALOG_CLOSE);
                     System.out.println("Destination not found");
                 }
+            } else if (ConfigConstants.PLATFORM_WEB.equalsIgnoreCase(platform)) {
+
+                Utility.SendKeysElementByCssSelector(Handler.GetCurrentWebDriver(),
+                        WebElementConstants.PARAM_DATA_ID,
+                        TravelokaWebElementConstants.SEARCH_FLIGHT_DESTINATION, input);
+
+                Utility.ClickElementsByCssSelector(Handler.GetCurrentWebDriver(),
+                        WebElementConstants.PARAM_CLASS,
+                        TravelokaWebElementConstants.VALUE_SUGGESTION_ITEM,
+                        Constants.SECOND_INDEX);
             } else {
-                System.out.println("setDestination doesn't have input");
+                throw new SkipException("Platform is not available");
             }
-        } else if (ConfigConstants.PLATFORM_WEB.equalsIgnoreCase(platform)) {
-
-            Utility.SendKeysElementByCssSelector(Handler.GetCurrentWebDriver(),
-                    WebElementConstants.PARAM_DATA_ID,
-                    TravelokaWebElementConstants.VALUE_FLIGHT_DESTINATION, input);
-
-            List<WebElement> origin = Utility.ClickElementsByXpath(Handler.GetCurrentWebDriver(),
-                    WebElementConstants.CLASS_DIV, WebElementConstants.PARAM_CLASS,
-                    TravelokaWebElementConstants.VALUE_SUGGESTION_ITEM,
-                    Constants.SECOND_INDEX);
         } else {
-            throw new SkipException("Platform is not available");
+            Log.Error("setDestination doesn't have input"
+            );
         }
     }
 
     @Test
-    @Parameters({"platform", "date", "month", "year"})
-    public void SetDepartureDate(String platform, @Optional String date, @Optional String month, @Optional String year) {
-        if (ConfigConstants.PLATFORM_ANDROID.equalsIgnoreCase(platform)) {
-            if (date != null) {
-                Utility.ClickElementByXPath(Handler.GetCurrentAppiumDriver(), AndroidElementConstants.CLASS_ANDROID_WIDGET_TEXTVIEW, AndroidElementConstants.PARAM_TEXT, TravelokaAndroidElementConstants.TEXT_DEPARTURE_DATE);
+    @Parameters({"platform", "day", "month", "year"})
+    public void SetDepartureDate(String platform, String day, String month, String year) {
+        if (day != null && month != null && year != null) {
+            // TODO: Fix set departure date for android
+            if (ConfigConstants.PLATFORM_ANDROID.equalsIgnoreCase(platform)) {
+                Utility.ClickElementByXPath(Handler.GetCurrentAppiumDriver(),
+                        AndroidElementConstants.CLASS_ANDROID_WIDGET_TEXTVIEW,
+                        AndroidElementConstants.PARAM_TEXT,
+                        TravelokaAndroidElementConstants.TEXT_DEPARTURE_DATE);
 
                 try {
-                    Utility.ClickElementById(Handler.GetCurrentAppiumDriver(), TravelokaAndroidElementConstants.ID_TEXT_VIEW_TOOLTIP_OK,
+                    Utility.ClickElementById(Handler.GetCurrentAppiumDriver(),
+                            TravelokaAndroidElementConstants.ID_TEXT_VIEW_TOOLTIP_OK,
                             TravelokaConfigConstants.TOOLTIP_TIMEOUT);
                 } catch (Exception e) {
                     Log.Debug("Tooltip is not available");
                 }
 
-                Utility.ClickElementByXPath(Handler.GetCurrentAppiumDriver(), AndroidElementConstants.CLASS_ANDROID_WIDGET_TEXTVIEW, AndroidElementConstants.PARAM_TEXT, date);
+                Utility.ClickElementByXPath(Handler.GetCurrentAppiumDriver(),
+                        AndroidElementConstants.CLASS_ANDROID_WIDGET_TEXTVIEW,
+                        AndroidElementConstants.PARAM_TEXT, day);
+
+            } else if (ConfigConstants.PLATFORM_WEB.equalsIgnoreCase(platform)) {
+                Utility.ClickElementByCssSelector(Handler.GetCurrentWebDriver(),
+                        WebElementConstants.PARAM_DATA_ID,
+                        TravelokaWebElementConstants.SEARCH_FLIGHT_SET_DEPARTURE_DATE);
+
+                String dateValue = "dp" + year + "-" + month + "-" + day;
+                Utility.ClickElementByCssSelector(Handler.GetCurrentWebDriver(),
+                        WebElementConstants.PARAM_DATA_ID,
+                        dateValue);
+
             } else {
-                System.out.println("SetDepartureDate doesn't have date input");
+                throw new SkipException("Platform is not available");
             }
         } else {
-            throw new SkipException("This test only for Android!");
+            Log.Error("SetDepartureDate doesn't have complete date input");
         }
     }
 
@@ -145,25 +165,45 @@ public class SearchFlights {
     @Test
     @Parameters({"platform", "input"})
     public void SetSeatClass(String platform, @Optional String input) {
-        if (ConfigConstants.PLATFORM_ANDROID.equalsIgnoreCase(platform)) {
-            if (input != null) {
-                Utility.ClickElementByXPath(Handler.GetCurrentAppiumDriver(), AndroidElementConstants.CLASS_ANDROID_WIDGET_TEXTVIEW, AndroidElementConstants.PARAM_TEXT, TravelokaAndroidElementConstants.TEXT_SEAT_CLASS);
+        if (input != null) {
+            if (ConfigConstants.PLATFORM_ANDROID.equalsIgnoreCase(platform)) {
+                Utility.ClickElementByXPath(Handler.GetCurrentAppiumDriver(),
+                        AndroidElementConstants.CLASS_ANDROID_WIDGET_TEXTVIEW,
+                        AndroidElementConstants.PARAM_TEXT, TravelokaAndroidElementConstants.TEXT_SEAT_CLASS);
 
                 if (TravelokaAndroidElementConstants.TEXT_ECONOMY.equalsIgnoreCase(input)
                         || TravelokaAndroidElementConstants.TEXT_BUSINESS.equalsIgnoreCase(input)
                         || TravelokaAndroidElementConstants.TEXT_FIRST_CLASS.equalsIgnoreCase(input)
                         || TravelokaAndroidElementConstants.TEXT_PREMIUM_ECONOMY.equalsIgnoreCase(input)) {
-                    Utility.ClickElementByXPath(Handler.GetCurrentAppiumDriver(), AndroidElementConstants.CLASS_ANDROID_WIDGET_TEXTVIEW, AndroidElementConstants.PARAM_TEXT, input);
+
+                    Utility.ClickElementByXPath(Handler.GetCurrentAppiumDriver(),
+                            AndroidElementConstants.CLASS_ANDROID_WIDGET_TEXTVIEW,
+                            AndroidElementConstants.PARAM_TEXT, input);
                 } else {
                     System.out.println("Seat Class: " + input + " is not available");
                 }
 
-                Utility.ClickElementById(Handler.GetCurrentAppiumDriver(), TravelokaAndroidElementConstants.ID_WIDGET_BUTTON_ACCEPT);
+                Utility.ClickElementById(Handler.GetCurrentAppiumDriver(),
+                        TravelokaAndroidElementConstants.ID_WIDGET_BUTTON_ACCEPT);
+
+            } else if (ConfigConstants.PLATFORM_WEB.equalsIgnoreCase(platform)) {
+
+                Utility.ClickElementByCssSelector(Handler.GetCurrentWebDriver(),
+                        WebElementConstants.PARAM_DATA_ID,
+                        TravelokaWebElementConstants.SEARCH_FLIGHT_SET_SEAT_CLASS);
+
+                String seatClass = TravelokaWebElementConstants.SEARCH_FLIGHT_SET_SEAT_CLASS +
+                        "-" + input;
+
+                Utility.ClickElementByCssSelector(Handler.GetCurrentWebDriver(),
+                        WebElementConstants.PARAM_DATA_ID,
+                        seatClass);
+
             } else {
-                System.out.println("SetDepartureDate doesn't have date input");
+                throw new SkipException("Platform is not available");
             }
         } else {
-            throw new SkipException("This test only for Android!");
+            System.out.println("SetSeatClass doesn't have date input");
         }
     }
 
@@ -177,7 +217,7 @@ public class SearchFlights {
         } else if (ConfigConstants.PLATFORM_WEB.equalsIgnoreCase(platform)) {
             Utility.ClickElementByCssSelector(Handler.GetCurrentWebDriver(),
                     WebElementConstants.PARAM_DATA_ID,
-                    TravelokaWebElementConstants.VALUE_AIRPORT_SWITCH_BUTTON);
+                    TravelokaWebElementConstants.SEARCH_FLIGHT_SWITCH_AIRPORT);
         } else {
             throw new SkipException("This test only for Android!");
         }
@@ -226,7 +266,7 @@ public class SearchFlights {
         } else if (ConfigConstants.PLATFORM_WEB.equalsIgnoreCase(platform)) {
             Utility.ClickElementByCssSelector(Handler.GetCurrentWebDriver(),
                     WebElementConstants.PARAM_DATA_ID,
-                    TravelokaWebElementConstants.VALUE_SEARCH_FLIGHT_SUBMIT);
+                    TravelokaWebElementConstants.SEARCH_FLIGHT_SUBMIT);
         } else {
             throw new SkipException("Platform is not available");
         }

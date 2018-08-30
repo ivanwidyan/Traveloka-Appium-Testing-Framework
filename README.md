@@ -1,9 +1,9 @@
-## Traveloka-Appium-Testing-Framework
-Appium Testing Framework for Traveloka Android App
+## Traveloka-Testing-Framework
+Testing Framework for Traveloka Android and Web App
 
 [![traveloka-icon](https://user-images.githubusercontent.com/12959761/44567746-109a0200-a79e-11e8-8e57-8bed67ac3087.png)](https://www.traveloka.com/en/)
 
-This Appium Traveloka framework is Java implementation of the [Appium](https://github.com/appium/appium) 
+This Traveloka framework is Java implementation of the [Appium](https://github.com/appium/appium)
 framework and [Selenium](https://github.com/SeleniumHQ/selenium) software-testing framework with [TestNG](https://github.com/cbeust/testng) 
 testing framework to create easy automate testing for Traveloka Android Application which written in Java & XML.
 
@@ -39,37 +39,37 @@ Included in `pom.xml` for maven dependency
 * Test Suites (Collection of Test Cases)
 * Multiple Test Suites
 * Parallel Execution (Multithreading) Test
-* Multiplatform Parallel Execution Test
+* Multiplatform Parallel Execution Test (e.g. Android & Web at the same time)
 
 ### Functionality Capabilities:
 **Splash Screen: (Android Only)**
 * Select Country & Language
 * Skip Splash Screen
 
-**Home: (Android, Web)**
+**Home: (Android & Web)**
 * Navigate to Flights
 * Navigate to Log In and Register
 
-**Member: (Android)**
+**Member: (Android & Web)**
 * Click Log In & Register
 
-**Login: (Android)**
+**Login: (Android & Web)**
 * Login with Email, Facebook, & Google
 
-**Search Flights: (Android, Web)**
+**Search Flights: (Android & Web)**
 * Set Origin, Destination, Departure Date, Passenger, Seat Class, & Return Date
 * Swap Origin & Destination
 * Return Switch
 * Search Flights
 
-**Select Flight: (Android, Web)**
+**Select Flight: (Android & Web)**
 * Sort By
 * Print & Select Flight
 
-**Booking Summary: (Android)**
+**Booking Summary: (Android & Web)**
 * Select
 
-**Fill in Details - Book: (Android)**
+**Fill in Details - Book: (Android & Web)**
 * Fill in Contact & Traveler Details
 * Continue
 
